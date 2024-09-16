@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/config" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/data" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation" charset="windows-1252" />
+  </component>
+</project>
