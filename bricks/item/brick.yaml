@@ -1,4 +1,4 @@
-name: element
+name: item
 description: A new brick created with the Mason CLI.
 
 # The following defines the brick repository url.
@@ -29,7 +29,7 @@ vars:
   name:
     type: string
     description: Your name
-    default: Element
+    default: item
     prompt: What is your element name?
 
 
