@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/data" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/logic" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/logic/{{BrickChangeName.snakeCase()}}_bloc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/presentation" charset="UTF-8" />
   </component>
