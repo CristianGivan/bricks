@@ -6,15 +6,16 @@
     <file url="file://$PROJECT_DIR$/bricks/element/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/bricks/element/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/bricks/element/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/presentation" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/config" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/data" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/bloc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/big/{{BrickChangeName.snakeCase()}}_card_page11.dart" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/config" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/data" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/domain" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/domain/repositories/uc2/uc1/{{BrickChangeName.snakeCase()}}_card_page15.dart" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation/bloc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/big/{{BrickChangeName.snakeCase()}}_card_page11.dart" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/{{BrickChangeName.snakeCase()}}_bloc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation/logi/bolc/{{BrickChangeName.snakeCase()}}_card_page14.dart" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/items/{{BrickChangeName.snakeCase()}}/presentation/presentation" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/bolc/{{BrickChangeName.snakeCase()}}_card_page13.dart" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/{{BrickChangeName.snakeCase()}}_bloc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/logi/bolc/{{BrickChangeName.snakeCase()}}_card_page14.dart" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/lib/features/organizer/items/{{BrickChangeName.snakeCase()}}/presentation/presentation" charset="UTF-8" />
   </component>
 </project>
