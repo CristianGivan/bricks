@@ -1,11 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fo_fe/features/organizer/items/task/config/task_exports.dart';
-import 'package:get_it/get_it.dart';
 
-List<BlocProvider> getTaskBlocProviders() {
+List<BlocProvider> get {{BrickChangeName.PascalCase()}}BlocProviders() {
   return [
-    BlocProvider<TaskBlocTask>(
-      create: (_) => GetIt.instance<TaskBlocTask>(),
+    BlocProvider< {{BrickChangeName.PascalCase()}}Bloc>(
+      create: (_) => GetIt.instance< {{BrickChangeName.PascalCase()}}Bloc>(),
     ),
   ];
 }

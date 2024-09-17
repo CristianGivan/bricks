@@ -1,4 +1,4 @@
-class TaskRouterNames {
-  static const String taskRoute = '/task';
-  static const String taskAddRoute = '/task/add';
+class  {{BrickChangeName.PascalCase()}}RouterNames {
+  static const String  {{BrickChangeName.camelCase()}}Route = '/ {{BrickChangeName.snakeCase()}}';
+  static const String  {{BrickChangeName.camelCase()}}AddRoute = '/{{BrickChangeName.snakeCase()}}/add';
 }
