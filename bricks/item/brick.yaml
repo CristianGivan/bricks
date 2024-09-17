@@ -26,7 +26,7 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  name:
+  BrickChangeName:
     type: string
     description: Your name
     default: item
