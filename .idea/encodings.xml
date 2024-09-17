@@ -17,5 +17,8 @@
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/mason_gen/items/{{BrickChangeName.snakeCase()}}/presentation/bloc/{{BrickChangeName.snakeCase()}}_bloc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/mason_gen/items/{{BrickChangeName.snakeCase()}}/presentation/logi/bolc/{{BrickChangeName.snakeCase()}}_card_page14.dart" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bricks/item/__brick__/mason_gen/items/{{BrickChangeName.snakeCase()}}/presentation/presentation" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/{{BrickChangeName.snakeCase()}}/presentation/screens/{{BrickChangeName.snakeCase()}}_add_screen.dart" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/{{BrickChangeName.snakeCase()}}/presentation/screens/{{BrickChangeName.snakeCase()}}_edit_screen.dart" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/bricks/item/__brick__/{{BrickChangeName.snakeCase()}}/presentation/screens/{{BrickChangeName.snakeCase()}}_screen.dart" charset="windows-1252" />
   </component>
 </project>
