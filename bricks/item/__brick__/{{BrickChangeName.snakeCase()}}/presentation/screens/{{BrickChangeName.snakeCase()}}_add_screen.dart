@@ -2,5 +2,9 @@ import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/c
 
 class {{BrickChangeName.pascalCase()}}AddScreen extends StatefulWidget {
   const {{BrickChangeName.pascalCase()}}AddScreen({super.key});
-
+@override
+State<StatefulWidget> createState() {
+// TODO: implement createState
+throw UnimplementedError();
+}
 }

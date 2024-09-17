@@ -1,4 +1,5 @@
-import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/config/{{BrickChangeName.snakeCase()}}_exports.dart';
+part of '{{BrickChangeName.snakeCase()}}_bloc.dart';
 
 abstract class {{BrickChangeName.pascalCase()}}BlocState extends Equatable {
+
 }
