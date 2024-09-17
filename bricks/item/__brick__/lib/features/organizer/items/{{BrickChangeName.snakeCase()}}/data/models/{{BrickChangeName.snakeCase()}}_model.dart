@@ -1,3 +1,3 @@
-class {{BrickChangeName.PascalCase()}}Model extends {{BrickChangeName.PascalCase()}}Entity with EquatableMixin {
+class {{BrickChangeName.pascalCase()}}Model extends {{BrickChangeName.pascalCase()}}Entity with EquatableMixin {
 
 }

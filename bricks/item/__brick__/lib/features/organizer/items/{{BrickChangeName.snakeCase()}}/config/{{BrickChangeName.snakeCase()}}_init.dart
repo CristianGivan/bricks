@@ -1,16 +1,16 @@
-
+import 'package:get_it/get_it.dart';
 final sl = GetIt.instance;
 
-void  {{BrickChangeName.PascalCase()}}Init() {
-  //  {{BrickChangeName.PascalCase()}} Data Sources
+void  {{BrickChangeName.pascalCase()}}Init() {
+  //  {{BrickChangeName.pascalCase()}} Data Sources
 
 
-  //  {{BrickChangeName.PascalCase()}} Repository
+  //  {{BrickChangeName.pascalCase()}} Repository
 
 
-  //  {{BrickChangeName.PascalCase()}} Use cases
+  //  {{BrickChangeName.pascalCase()}} Use cases
 
 
-  //  {{BrickChangeName.PascalCase()}} BLoCs
+  //  {{BrickChangeName.pascalCase()}} BLoCs
 
 }

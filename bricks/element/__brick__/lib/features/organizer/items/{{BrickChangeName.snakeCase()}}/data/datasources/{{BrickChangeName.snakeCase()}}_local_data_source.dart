@@ -6,6 +6,6 @@ import 'package:fo_fe/features/organizer/items/task/config/task_exports.dart';
 import 'package:fo_fe/features/organizer/items/task/data/models/task_model.dart';
 import 'package:fo_fe/features/organizer/items/user/config/user_exports.dart';
 
-abstract class {{BrickChangeName.PascalCase()}}LocalDataSource {
+abstract class {{BrickChangeName.pascalCase()}}LocalDataSource {
 
 }

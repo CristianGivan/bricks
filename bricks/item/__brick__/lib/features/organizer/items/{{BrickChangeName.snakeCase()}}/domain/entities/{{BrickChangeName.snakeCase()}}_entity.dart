@@ -1,4 +1,4 @@
 
-class {{BrickChangeName.PascalCase()}}Entity extends OrganizerItemEntity with EquatableMixin {
+class {{BrickChangeName.pascalCase()}}Entity extends OrganizerItemEntity with EquatableMixin {
 
 }

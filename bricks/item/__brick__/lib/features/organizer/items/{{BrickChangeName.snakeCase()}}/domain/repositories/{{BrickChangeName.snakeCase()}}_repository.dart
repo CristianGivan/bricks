@@ -1,5 +1,5 @@
 
 
-abstract class {{BrickChangeName.PascalCase()}}Repository {
+abstract class {{BrickChangeName.pascalCase()}}Repository {
 
 }

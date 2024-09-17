@@ -1,4 +1,4 @@
 
-class {{BrickChangeName.PascalCase()}}Mapper {
+class {{BrickChangeName.pascalCase()}}Mapper {
 
 }

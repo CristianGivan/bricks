@@ -1,3 +1,3 @@
-abstract class {{BrickChangeName.PascalCase()}}BlocEvent extends Equatable {
+abstract class {{BrickChangeName.pascalCase()}}BlocEvent extends Equatable {
 
 }

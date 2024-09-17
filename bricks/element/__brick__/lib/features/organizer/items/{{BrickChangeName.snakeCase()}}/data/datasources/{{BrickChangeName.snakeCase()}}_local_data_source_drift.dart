@@ -1,8 +1,8 @@
 
-class {{BrickChangeName.PascalCase()}}LocalDataSourceDrift implements {{BrickChangeName.PascalCase()}}LocalDataSource {
+class {{BrickChangeName.pascalCase()}}LocalDataSourceDrift implements {{BrickChangeName.pascalCase()}}LocalDataSource {
   final OrganizerDriftDB db;
 
-{{BrickChangeName.PascalCase()}}LocalDataSourceDrift({
+{{BrickChangeName.pascalCase()}}LocalDataSourceDrift({
     required this.db,
   });
 

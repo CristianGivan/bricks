@@ -1,4 +1,4 @@
 
 
-class {{BrickChangeName.PascalCase()}}ModelLazyLoaded extends {{BrickChangeName.PascalCase()}}Model {
+class {{BrickChangeName.pascalCase()}}ModelLazyLoaded extends {{BrickChangeName.pascalCase()}}Model {
  }

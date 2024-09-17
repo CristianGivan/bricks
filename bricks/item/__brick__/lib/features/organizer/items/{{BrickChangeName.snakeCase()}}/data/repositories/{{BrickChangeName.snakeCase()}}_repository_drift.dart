@@ -1,6 +1,6 @@
-class {{BrickChangeName.PascalCase()}}RepositoryDrift implements {{BrickChangeName.PascalCase()}}Repository {
-  final {{BrickChangeName.PascalCase()}}LocalDataSourceDrift localDataSource;
+class {{BrickChangeName.pascalCase()}}RepositoryDrift implements {{BrickChangeName.pascalCase()}}Repository {
+  final {{BrickChangeName.pascalCase()}}LocalDataSourceDrift localDataSource;
 
-  {{BrickChangeName.PascalCase()}}RepositoryDrift({required this.localDataSource});
+  {{BrickChangeName.pascalCase()}}RepositoryDrift({required this.localDataSource});
 
 }

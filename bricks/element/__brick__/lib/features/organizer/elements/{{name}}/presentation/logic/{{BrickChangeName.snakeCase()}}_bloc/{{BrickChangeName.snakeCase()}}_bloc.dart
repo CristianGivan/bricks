@@ -1,4 +1,4 @@
 
-class {{BrickChangeName.PascalCase()}}Bloc extends Bloc<{{BrickChangeName.PascalCase()}}BlocEvent, {{BrickChangeName.PascalCase()}}BlocState> {
+class {{BrickChangeName.pascalCase()}}Bloc extends Bloc<{{BrickChangeName.pascalCase()}}BlocEvent, {{BrickChangeName.pascalCase()}}BlocState> {
 
  }

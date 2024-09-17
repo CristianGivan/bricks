@@ -1,4 +1,6 @@
-
+import 'package:flutter/material.dart';
+import 'package:fo_fe/features/organizer/items/ {{BrickChangeName.snakeCase()}}/config/ {{BrickChangeName.snakeCase()}}_route_names.dart';
+import 'package:go_router/go_router.dart';
 
 class TaskAppBranch {
   static StatefulShellBranch branch(GlobalKey<NavigatorState> navigatorKey) {
@@ -12,19 +14,19 @@ class TaskAppBranch {
 
   static GoRoute route() {
     return GoRoute(
-      name:  {{BrickChangeName.PascalCase()}}RouterNames. {{BrickChangeName.camelCase()}}Route,
+      name:  {{BrickChangeName.pascalCase()}}RouterNames. {{BrickChangeName.camelCase()}}Route,
       path: '/ {{BrickChangeName.snakeCase()}}',
       pageBuilder: (context, state) => const NoTransitionPage(
-        child:  {{BrickChangeName.PascalCase()}}Screen(),
+        child:  {{BrickChangeName.pascalCase()}}Screen(),
       ),
       routes: [
         GoRoute(
-          name:  {{BrickChangeName.PascalCase()}}RouterNames. {{BrickChangeName.camelCase()}}AddRoute,
+          name:  {{BrickChangeName.pascalCase()}}RouterNames. {{BrickChangeName.camelCase()}}AddRoute,
           path: ' {{BrickChangeName.snakeCase()}}_add',
           pageBuilder: (context, state) {
             // Accessing 'userId' from state.pathParameters
             return const NoTransitionPage(
-              child:  {{BrickChangeName.PascalCase()}}AddScreen(),
+              child:  {{BrickChangeName.pascalCase()}}AddScreen(),
             );
           },
         ),

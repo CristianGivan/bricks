@@ -1,4 +1,4 @@
 
-class {{BrickChangeName.PascalCase()}}EntityLazyLoaded extends {{BrickChangeName.PascalCase()}}Entity {
+class {{BrickChangeName.pascalCase()}}EntityLazyLoaded extends {{BrickChangeName.pascalCase()}}Entity {
 
 }
