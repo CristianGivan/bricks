@@ -1,4 +1,5 @@
-import 'package:get_it/get_it.dart';
+import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain/entities/{{BrickChangeName.snakeCase()}}_entity.dart';
+
 final sl = GetIt.instance;
 
 void  {{BrickChangeName.pascalCase()}}Init() {

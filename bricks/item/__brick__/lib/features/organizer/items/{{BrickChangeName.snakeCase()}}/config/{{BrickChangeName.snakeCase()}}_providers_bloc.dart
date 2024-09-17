@@ -1,5 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain/entities/{{BrickChangeName.snakeCase()}}_entity.dart';
 
 List<BlocProvider> get{{BrickChangeName.pascalCase()}}BlocProviders() {
   return [

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fo_fe/features/organizer/items/ {{BrickChangeName.snakeCase()}}/config/ {{BrickChangeName.snakeCase()}}_route_names.dart';
-import 'package:go_router/go_router.dart';
+import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain/entities/{{BrickChangeName.snakeCase()}}_entity.dart';
 
 class TaskAppBranch {
   static StatefulShellBranch branch(GlobalKey<NavigatorState> navigatorKey) {
