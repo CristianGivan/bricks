@@ -1,4 +1,4 @@
-import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/domain/entities/{{BrickChangeName.snakeCase()}}_entity.dart';
+import 'package:fo_fe/features/organizer/items/{{BrickChangeName.snakeCase()}}/config/{{BrickChangeName.snakeCase()}}_exports.dart';
 
 final sl = GetIt.instance;
 
