@@ -32,4 +32,5 @@ vars:
     default: item
     prompt: What is your element name?
 
-
+files:
+  lib/features/organizer/items
