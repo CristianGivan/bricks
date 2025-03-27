@@ -1,0 +1,12 @@
+
+==General Commands
+
+mason init
+mason get
+mason list
+
+== Special Commands
+
+mason make item_small  --output-dir lib/features/organizer/all_items
+mason make item_small -c mason-config.json --output-dir lib/features/organizer
+
