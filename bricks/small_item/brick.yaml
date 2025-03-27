@@ -1,5 +1,5 @@
-name: element
-description: A new brick created with the Mason CLI.
+name: small_item
+description: A template for a small item
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.
@@ -26,10 +26,7 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  name:
+  small_item:
     type: string
-    description: Your name
-    default: Element
-    prompt: What is your element name?
-
-
+    description: The name of the small item
+    prompt: What is the name of the small item?
