@@ -26,7 +26,8 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  small_item:
+  ItemSmall:
     type: string
-    description: The name of the small item
-    prompt: What is the name of the small item?
+    description: Your name
+    default: item
+    prompt: What is your element name?
