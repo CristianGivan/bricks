@@ -1,7 +1,7 @@
 name: item_small
 description: A template for a small item
 
-version: 0.1.1+1
+version: 0.1.1+2
 
 environment:
   mason: ^0.1.1
@@ -21,7 +21,7 @@ vars:
     type: string
     description: The name of the item
     default: ItemSmall
-  #    prompt: What is your element name?
+    prompt: What is your element name?
   DartExtension:
     type: string
     default: .dart
