@@ -1,0 +1,25 @@
+import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
+
+class {{ItemSmall.pascalCase()}}FormCubit extends Cubit<{{ItemSmall.pascalCase()}}FormState> {
+  {{ItemSmall.pascalCase()}}FormCubit() : super({{ItemSmall.pascalCase()}}FormState());
+
+  void updateSubject(String subject) {
+    emit(state.copyWith(subject: subject));
+  }
+}
+
+class {{ItemSmall.pascalCase()}}FormState extends Equatable {
+  final String subject;
+
+  const {{ItemSmall.pascalCase()}}FormState({this.subject = ''});
+
+  {{ItemSmall.pascalCase()}}FormState copyWith({String? subject}) {
+    return {{ItemSmall.pascalCase()}}FormState(
+      subject: subject ?? this.subject,
+    );
+  }
+
+  @override
+  List<Object> get props => [subject];
+}

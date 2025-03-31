@@ -1,0 +1,52 @@
+import 'package:fo_fe/core/widgets/core_widget_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_link_bloc/tag_link_bloc_factory.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/widgets/menu/tag_edit_screen_actions_menu.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_link_params_factory.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_strings.dart';
+import 'package:fo_fe/features/organizer/all_items/user/domain/entities/user_entity.dart';
+import 'package:fo_fe/features/organizer/presentation/pages/item_link/item_link_entities_view_page.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}UpdateScreen extends StatelessWidget {
+  final int {{ItemSmall.camelCase()}}Id;
+
+  const {{ItemSmall.pascalCase()}}UpdateScreen({super.key, required this.{{ItemSmall.camelCase()}}Id});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: {{ItemSmall.pascalCase()}}Strings().screenEditTitle,
+      body: (userId) => _buildEditPage(userId),
+      menuOptions: (context, userId) => {{ItemSmall.pascalCase()}}EditScreenActionsMenu.getMenuItems(context),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+
+  Widget _buildEditPage(int userId) {
+    return Column(
+      children: [
+        _build{{ItemSmall.pascalCase()}}IdField(),
+        _buildUserEntityBlocProvider(userId),
+      ],
+    );
+  }
+
+  Widget _build{{ItemSmall.pascalCase()}}IdField() {
+    return TextField(
+      decoration: const InputDecoration(labelText: '{{ItemSmall.pascalCase()}} ID: '),
+      controller: TextEditingController(text: {{ItemSmall.camelCase()}}Id.toString()),
+    );
+  }
+
+  Widget _buildUserEntityBlocProvider(int userId) {
+    return BlocProvider(
+      create: (context) => {{ItemSmall.pascalCase()}}LinksBlocFactory.createFor<UserEntity>(),
+      child: _buildLinkEntityBlocProvider<UserEntity>(userId),
+    );
+  }
+
+  Widget _buildLinkEntityBlocProvider<T extends ItemEntity>(int userId) {
+    final params = {{ItemSmall.pascalCase()}}LinkParamsFactory.create<T>(id: {{ItemSmall.camelCase()}}Id, forUserId: userId);
+    return ItemLinkEntitiesViewPage<T>(params: params);
+  }
+}

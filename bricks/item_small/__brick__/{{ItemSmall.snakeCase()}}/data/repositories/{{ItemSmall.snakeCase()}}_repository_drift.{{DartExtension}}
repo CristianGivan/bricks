@@ -1,0 +1,107 @@
+import 'package:dartz/dartz.dart';
+import 'package:fo_fe/core/error/failures.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/data/models/tag_user_link_mapper.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/entities/tag_user_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/OrganizerDatabaseHelper/OrganizerDatabaseHelper.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:fo_fe/features/organizer/utils/other/item_type/update_link_ids_params.dart';
+
+class {{ItemSmall.pascalCase()}}RepositoryDrift implements {{ItemSmall.pascalCase()}}Repository {
+  final {{ItemSmall.pascalCase()}}LocalDataSource localDataSource;
+  final OrganizerDatabaseHelper dbHelper;
+
+  {{ItemSmall.pascalCase()}}RepositoryDrift({required this.localDataSource}) : dbHelper = OrganizerDatabaseHelper();
+
+  @override
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}Entity>> add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}}) {
+    return dbHelper.execute(
+      () => localDataSource.add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Mapper.tableDriftCompanionFromEntity({{ItemSmall.camelCase()}})),
+      {{ItemSmall.pascalCase()}}Mapper.entityFromTableDrift,
+      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not added"),
+    );
+  }
+
+  @override
+  Future<Either<Failure, OrganizerItems<{{ItemSmall.pascalCase()}}Entity>>> get{{ItemSmall.pascalCase()}}EntitiesFromUser(int forUserId) {
+    return dbHelper.handleDatabaseOperation(() async {
+      return {{ItemSmall.pascalCase()}}Mapper.entitiesFromRows(await localDataSource.get{{ItemSmall.pascalCase()}}ItemsFromUser(forUserId) ?? []);
+    });
+  }
+
+  @override
+  Future<Either<Failure, OrganizerItems<{{ItemSmall.pascalCase()}}Dto>>> get{{ItemSmall.pascalCase()}}ItemsFromUser(int forUserId) {
+    return dbHelper.handleDatabaseOperation(() async {
+      return {{ItemSmall.pascalCase()}}Mapper.itemsFromRows(await localDataSource.get{{ItemSmall.pascalCase()}}ItemsFromUser(forUserId) ?? []);
+    });
+  }
+
+  @override
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}Entity>> update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}}) {
+    return dbHelper.execute(
+      () => localDataSource.update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Mapper.tableDriftCompanionFromEntity({{ItemSmall.camelCase()}})),
+      {{ItemSmall.pascalCase()}}Mapper.entityFromTableDrift,
+      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not updated"),
+    );
+  }
+
+  @override
+  Future<Either<Failure, int>> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id) {
+    return dbHelper.handleDatabaseOperation(() async => dbHelper.ensureNotNull(
+        await localDataSource.delete{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Id), const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not deleted")));
+  }
+
+  @override
+  Future<Either<Failure, IdSet>> delete{{ItemSmall.pascalCase()}}Items(IdSet {{ItemSmall.camelCase()}}Ids) {
+    return dbHelper.handleDatabaseOperation(() async {
+      final deletedItemsIds = await localDataSource.delete{{ItemSmall.pascalCase()}}Items({{ItemSmall.camelCase()}}Ids.toList());
+      return IdSet.of(deletedItemsIds!);
+    });
+  }
+
+  @override
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}UserLinkEntity>> add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkEntity {{ItemSmall.camelCase()}}UserEntity) {
+    return dbHelper.execute(
+      () => localDataSource.add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkMapper.companionFomEntity({{ItemSmall.camelCase()}}UserEntity)),
+      {{ItemSmall.pascalCase()}}UserLinkMapper.entityFromTableDrift,
+      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}}UserLink not added"),
+    );
+  }
+
+  @override
+  Future<Either<Failure, OrganizerItems<UserEntity>>> getUserItemsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id) {
+    return dbHelper.handleDatabaseOperation(() async {
+      return dbHelper.getFilterNonNullItems(
+        await localDataSource.getUserItemsBy{{ItemSmall.pascalCase()}}Id({{ItemSmall.camelCase()}}Id),
+        UserMapper.entityItemsFromTableDriftItems,
+      );
+    });
+  }
+
+  @override
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}UserLinkEntity>> update{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkEntity {{ItemSmall.camelCase()}}UserEntity) {
+    return dbHelper.execute(
+      () => localDataSource.update{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkMapper.companionFomEntity({{ItemSmall.camelCase()}}UserEntity)),
+      {{ItemSmall.pascalCase()}}UserLinkMapper.entityFromTableDrift,
+      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}}UserLink not updated"),
+    );
+  }
+
+  @override
+  Future<Either<Failure, OrganizerItems<UserEntity>>> update{{ItemSmall.pascalCase()}}UserLinks(ItemLinkIdsParams params) {
+    return dbHelper.handleDatabaseOperation(() async {
+      final {{ItemSmall.camelCase()}}Id = params.itemId;
+      if (params.addedItems.isNotEmpty) {
+        await localDataSource.addUserItemsTo{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Id, params.addedItems.toList());
+      }
+      if (params.removedItems.isNotEmpty) {
+        await localDataSource.deleteUserItemsFrom{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Id, params.removedItems.toList());
+      }
+      return dbHelper.getFilterNonNullItems(
+        await localDataSource.getUserItemsBy{{ItemSmall.pascalCase()}}Id({{ItemSmall.camelCase()}}Id),
+        UserMapper.entityItemsFromTableDriftItems,
+      );
+    });
+  }
+}

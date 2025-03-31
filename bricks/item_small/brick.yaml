@@ -19,6 +19,9 @@ environment:
 vars:
   ItemSmall:
     type: string
-    description: Your name
-    default: item
-    prompt: What is your element name?
+    description: The name of the item
+    default: ItemSmall
+  #    prompt: What is your element name?
+  DartExtension:
+    type: string
+    default: .dart

@@ -1,0 +1,70 @@
+// lib/features/organizer/items/tag/presentation/screen/tag_add_screen.dart
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_cubit/tag_form_cubit.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/presentation/cubit/organizer_cubit.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:fo_fe/features/organizer/utils/other/item_type/item_add_params.dart';
+
+class {{ItemSmall.pascalCase()}}AddForm extends StatelessWidget {
+  final int userId;
+  final ItemLinkParams itemLinkParams;
+
+  const {{ItemSmall.pascalCase()}}AddForm({super.key, required this.userId, required this.itemLinkParams});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<{{ItemSmall.pascalCase()}}FormCubit, {{ItemSmall.pascalCase()}}FormState>(
+      builder: (context, state) {
+        return Form(
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(labelText: '{{ItemSmall.pascalCase()}} Name'),
+                initialValue: state.subject,
+                onChanged: (value) => context.read<{{ItemSmall.pascalCase()}}FormCubit>().updateSubject(value),
+                validator: validate{{ItemSmall.pascalCase()}}Name,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _save{{ItemSmall.pascalCase()}}(context),
+                child: const Text('Save {{ItemSmall.pascalCase()}}'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  String? validate{{ItemSmall.pascalCase()}}Name(value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please enter a {{ItemSmall.pascalCase()}} name';
+    }
+    return null;
+  }
+
+  void _save{{ItemSmall.pascalCase()}}(BuildContext context) {
+    final formState = context.read<{{ItemSmall.pascalCase()}}FormCubit>().state;
+    final {{ItemSmall.camelCase()}} = _create{{ItemSmall.pascalCase()}}FromFormState(formState);
+    final addItemParams = _createAddItemParams({{ItemSmall.camelCase()}});
+
+    BlocProvider.of<OrganizerBloc<{{ItemSmall.pascalCase()}}Dto>>(context).add(AddItemBlocEvent(addItemParams));
+
+    context.read<OrganizerCubit<{{ItemSmall.pascalCase()}}Entity>>().getAllEntitiesFromUser(userId);
+    context.pop();
+  }
+
+  AddItemParams _createAddItemParams({{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}}) => AddItemParams(
+        item: {{ItemSmall.camelCase()}},
+        itemLinkParams: itemLinkParams,
+      );
+
+  {{ItemSmall.pascalCase()}}Entity _create{{ItemSmall.pascalCase()}}FromFormState({{ItemSmall.pascalCase()}}FormState formState) {
+    return {{ItemSmall.pascalCase()}}Entity(
+      id: 0,
+      subject: formState.subject,
+      createdDate: DateTime.now(),
+      creatorId: userId,
+    );
+  }
+}

@@ -1,0 +1,26 @@
+import 'package:excel/excel.dart';
+import 'package:fo_fe/features/organizer/utils/exports/excel/excel_table_factory.dart';
+
+import '../{{ItemSmall.camelCase()}}_exports.dart';
+
+class {{ItemSmall.pascalCase()}}ExcelTableFactory extends ExcelTableFactory<{{ItemSmall.pascalCase()}}Dto> {
+  @override
+  String getTableName() => '{{ItemSmall.pascalCase()}}s';
+
+  @override
+  List<CellValue?> createHeader() {
+    return [
+      TextCellValue('{{ItemSmall.pascalCase()}} ID'),
+      TextCellValue('{{ItemSmall.pascalCase()}} Subject'),
+      TextCellValue('{{ItemSmall.pascalCase()}} Description'),
+    ];
+  }
+
+  @override
+  List<CellValue?> createRow({{ItemSmall.pascalCase()}}Dto entity) {
+    return [
+      IntCellValue(entity.{{ItemSmall.camelCase()}}.id),
+      TextCellValue(entity.{{ItemSmall.camelCase()}}.subject),
+    ];
+  }
+}

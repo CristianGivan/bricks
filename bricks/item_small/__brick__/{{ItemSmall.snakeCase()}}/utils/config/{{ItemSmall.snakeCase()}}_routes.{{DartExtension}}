@@ -1,0 +1,61 @@
+import 'package:fo_fe/core/widgets/core_widget_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/presentation/screens/{{ItemSmall.camelCase()}}_add_screen.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/presentation/screens/{{ItemSmall.camelCase()}}_update_screen.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/utils/{{ItemSmall.camelCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/presentation/screens/item_delete_screen.dart';
+import 'package:fo_fe/features/organizer/presentation/screens/item_export_screen.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+import '../../presentation/screens/{{ItemSmall.camelCase()}}_view_screen.dart';
+
+class {{ItemSmall.pascalCase()}}Routes {
+  static GoRoute routes() {
+    return GoRoute(
+      path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}RoutePath,
+      name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}RouteName,
+      pageBuilder: (context, state) {
+        return MaterialPage(child: ItemScreen<{{ItemSmall.pascalCase()}}Dto>());
+      },
+      routes: [
+        GoRoute(
+          path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}AddRoutePath,
+          name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}AddRouteName,
+          pageBuilder: (context, state) {
+            final ItemLinkParams itemLinkParams = state.extra as ItemLinkParams? ?? NoLinkParams();
+            return MaterialPage(child: {{ItemSmall.pascalCase()}}AddScreen(itemLinkParams));
+          },
+        ),
+        GoRoute(
+          path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ViewRoutePath,
+          name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ViewRouteName,
+          pageBuilder: (context, state) {
+            final {{ItemSmall.camelCase()}}Id = state.extra as int;
+            return MaterialPage(child: {{ItemSmall.pascalCase()}}ViewScreen({{ItemSmall.camelCase()}}Id: {{ItemSmall.camelCase()}}Id));
+          },
+        ),
+        GoRoute(
+          path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}UpdateRoutePath,
+          name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}UpdateRouteName,
+          pageBuilder: (context, state) {
+            final {{ItemSmall.camelCase()}}Id = state.extra as int;
+            return MaterialPage(child: {{ItemSmall.pascalCase()}}UpdateScreen({{ItemSmall.camelCase()}}Id: {{ItemSmall.camelCase()}}Id));
+          },
+        ),
+        GoRoute(
+          path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}DeleteRoutePath,
+          name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}DeleteRouteName,
+          pageBuilder: (context, state) {
+            return NoTransitionPage(child: ItemDeleteScreen<{{ItemSmall.pascalCase()}}Dto>());
+          },
+        ),
+        GoRoute(
+          path: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ExportRoutePath,
+          name: {{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ExportRouteName,
+          pageBuilder: (context, state) {
+            return NoTransitionPage(child: ItemExportScreen<{{ItemSmall.pascalCase()}}Dto>());
+          },
+        ),
+      ],
+    );
+  }
+}

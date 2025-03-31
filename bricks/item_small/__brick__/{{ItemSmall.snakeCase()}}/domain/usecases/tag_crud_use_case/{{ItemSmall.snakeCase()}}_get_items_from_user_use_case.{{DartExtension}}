@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:fo_fe/core/usecase/usecase.dart';
+import 'package:fo_fe/core/utils/exports/core_utils_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}GetItemsFromUserUseCase extends UseCase<OrganizerItems<{{ItemSmall.pascalCase()}}Dto>, ItemParams> {
+  final {{ItemSmall.pascalCase()}}Repository repository;
+
+  {{ItemSmall.pascalCase()}}GetItemsFromUserUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, OrganizerItems<{{ItemSmall.pascalCase()}}Dto>>> call(params) async {
+    return repository.get{{ItemSmall.pascalCase()}}ItemsFromUser(params.forUserId);
+  }
+}

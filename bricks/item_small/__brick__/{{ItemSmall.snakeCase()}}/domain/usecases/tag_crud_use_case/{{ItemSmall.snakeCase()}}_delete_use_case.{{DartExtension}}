@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:fo_fe/core/error/failures.dart';
+import 'package:fo_fe/core/usecase/usecase.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/repositories/{{ItemSmall.snakeCase()}}_repository.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}DeleteUseCase extends UseCase<IdSet, IdSet> {
+  final {{ItemSmall.pascalCase()}}Repository repository;
+
+  {{ItemSmall.pascalCase()}}DeleteUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, IdSet>> call(IdSet params) {
+    return repository.delete{{ItemSmall.pascalCase()}}Items(params);
+  }
+}

@@ -1,0 +1,193 @@
+import 'package:drift/drift.dart';
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+
+class {{ItemSmall.pascalCase()}}LocalDataSourceDrift implements {{ItemSmall.pascalCase()}}LocalDataSource {
+  final OrganizerDriftDB db;
+
+  {{ItemSmall.pascalCase()}}LocalDataSourceDrift({required this.db});
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion) {
+    return db.transaction(() async {
+      final id = await db.{{ItemSmall.camelCase()}}DaoDrift.add{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Companion);
+      return get{{ItemSmall.pascalCase()}}ById(id);
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> get{{ItemSmall.pascalCase()}}ById(int id) => db.{{ItemSmall.camelCase()}}DaoDrift.get{{ItemSmall.pascalCase()}}ById(id);
+
+  @override
+  Future<List<QueryRow>?> get{{ItemSmall.pascalCase()}}ItemsFromUser(int userId) =>
+      db.{{ItemSmall.camelCase()}}DaoDrift.get{{ItemSmall.pascalCase()}}ItemsFromUser(userId);
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion) async {
+    return db.transaction(() async {
+      final isUpdate = await db.{{ItemSmall.camelCase()}}DaoDrift.update{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Companion);
+      return isUpdate ? get{{ItemSmall.pascalCase()}}ById({{ItemSmall.camelCase()}}Companion.id.value) : Future.value(null);
+    });
+  }
+
+  Future<int> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Ids) {
+    return db.transaction(() => db.{{ItemSmall.camelCase()}}DaoDrift.delete{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Ids));
+  }
+
+  @override
+  Future<List<int>?> delete{{ItemSmall.pascalCase()}}Items(List<int> {{ItemSmall.camelCase()}}Ids) async {
+    if ({{ItemSmall.camelCase()}}Ids.isEmpty) return [];
+
+    return db.transaction(() async {
+      await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.delete{{ItemSmall.pascalCase()}}UsersBy{{ItemSmall.pascalCase()}}Ids({{ItemSmall.camelCase()}}Ids);
+      await db.{{ItemSmall.camelCase()}}DaoDrift.delete{{ItemSmall.pascalCase()}}sByIds({{ItemSmall.camelCase()}}Ids);
+      return {{ItemSmall.camelCase()}}Ids;
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion companion) async {
+    return db.transaction(() async {
+      final {{ItemSmall.camelCase()}}UserLinkId = await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.add{{ItemSmall.pascalCase()}}User(companion);
+      return await _get{{ItemSmall.pascalCase()}}UserLinkById({{ItemSmall.camelCase()}}UserLinkId);
+    });
+  }
+
+  @override
+  Future<List<UserTableDriftG?>?> getUserItemsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id) {
+    return db.transaction(() async {
+      final userIds = await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.getUserIdsBy{{ItemSmall.pascalCase()}}Id({{ItemSmall.camelCase()}}Id);
+      return await db.userDaoDrift.getUserEntitiesByIdSet(userIds);
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> update{{ItemSmall.pascalCase()}}UserLink(
+      {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion companion) async {
+    return db.transaction(() async {
+      await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.update{{ItemSmall.pascalCase()}}UserLink(companion);
+      return await _get{{ItemSmall.pascalCase()}}UserLinkById(companion.id.value);
+    });
+  }
+
+  @override
+  Future<void> addUserItemsTo{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userItems) async {
+    if (userItems.isEmpty) return;
+    final companions =
+        userItems.map((userId) => _createSelected{{ItemSmall.pascalCase()}}UserCompanion({{ItemSmall.camelCase()}}Id, userId)).toList();
+    await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.add{{ItemSmall.pascalCase()}}UsersBatch(companions);
+  }
+
+  @override
+  Future<void> deleteUserItemsFrom{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userItems) async {
+    if (userItems.isEmpty) return;
+    await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.delete{{ItemSmall.pascalCase()}}UsersBatch({{ItemSmall.camelCase()}}Id, userItems);
+  }
+
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> _get{{ItemSmall.pascalCase()}}UserLinkById(int {{ItemSmall.camelCase()}}UserLinkId) =>
+      db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.get{{ItemSmall.pascalCase()}}UserById({{ItemSmall.camelCase()}}UserLinkId);
+
+  {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion _createSelected{{ItemSmall.pascalCase()}}UserCompanion(int {{ItemSmall.camelCase()}}Id, int userId) {
+    return {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion(
+      id: Value.absent(),
+      {{ItemSmall.camelCase()}}Id: Value({{ItemSmall.camelCase()}}Id),
+      userId: Value(userId),
+      linkingDate: Value(DateTime.now()),
+    );
+  }
+}
+
+class {{ItemSmall.pascalCase()}}LocalDataSourceDrift implements {{ItemSmall.pascalCase()}}LocalDataSource {
+  final OrganizerDriftDB db;
+
+  {{ItemSmall.pascalCase()}}LocalDataSourceDrift({required this.db});
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion) {
+    return db.transaction(() async {
+      final id = await db.{{ItemSmall.camelCase()}}DaoDrift.add{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Companion);
+      return get{{ItemSmall.pascalCase()}}ById(id);
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> get{{ItemSmall.pascalCase()}}ById(int id) => db.{{ItemSmall.camelCase()}}DaoDrift.get{{ItemSmall.pascalCase()}}ById(id);
+
+  @override
+  Future<List<QueryRow>?> get{{ItemSmall.pascalCase()}}ItemsFromUser(int userId) =>
+      db.{{ItemSmall.camelCase()}}DaoDrift.get{{ItemSmall.pascalCase()}}ItemsFromUser(userId);
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion) async {
+    return db.transaction(() async {
+      final isUpdate = await db.{{ItemSmall.camelCase()}}DaoDrift.update{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Companion);
+      return isUpdate ? get{{ItemSmall.pascalCase()}}ById({{ItemSmall.camelCase()}}Companion.id.value) : Future.value(null);
+    });
+  }
+
+  Future<int> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Ids) {
+    return db.transaction(() => db.{{ItemSmall.camelCase()}}DaoDrift.delete{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Ids));
+  }
+
+  @override
+  Future<List<int>?> delete{{ItemSmall.pascalCase()}}Items(List<int> {{ItemSmall.camelCase()}}Ids) async {
+    if ({{ItemSmall.camelCase()}}Ids.isEmpty) return [];
+
+    return db.transaction(() async {
+      await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.delete{{ItemSmall.pascalCase()}}UsersBy{{ItemSmall.pascalCase()}}Ids({{ItemSmall.camelCase()}}Ids);
+      await db.{{ItemSmall.camelCase()}}DaoDrift.delete{{ItemSmall.pascalCase()}}sByIds({{ItemSmall.camelCase()}}Ids);
+      return {{ItemSmall.camelCase()}}Ids;
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion companion) async {
+    return db.transaction(() async {
+      final {{ItemSmall.camelCase()}}UserLinkId = await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.add{{ItemSmall.pascalCase()}}User(companion);
+      return await _get{{ItemSmall.pascalCase()}}UserLinkById({{ItemSmall.camelCase()}}UserLinkId);
+    });
+  }
+
+  @override
+  Future<List<UserTableDriftG?>?> getUserItemsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id) {
+    return db.transaction(() async {
+      final userIds = await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.getUserIdsBy{{ItemSmall.pascalCase()}}Id({{ItemSmall.camelCase()}}Id);
+      return await db.userDaoDrift.getUserEntitiesByIdSet(userIds);
+    });
+  }
+
+  @override
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> update{{ItemSmall.pascalCase()}}UserLink(
+      {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion companion) async {
+    return db.transaction(() async {
+      await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.update{{ItemSmall.pascalCase()}}UserLink(companion);
+      return await _get{{ItemSmall.pascalCase()}}UserLinkById(companion.id.value);
+    });
+  }
+
+  @override
+  Future<void> addUserItemsTo{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userItems) async {
+    if (userItems.isEmpty) return;
+    final companions =
+        userItems.map((userId) => _createSelected{{ItemSmall.pascalCase()}}UserCompanion({{ItemSmall.camelCase()}}Id, userId)).toList();
+    await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.add{{ItemSmall.pascalCase()}}UsersBatch(companions);
+  }
+
+  @override
+  Future<void> deleteUserItemsFrom{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userItems) async {
+    if (userItems.isEmpty) return;
+    await db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.delete{{ItemSmall.pascalCase()}}UsersBatch({{ItemSmall.camelCase()}}Id, userItems);
+  }
+
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> _get{{ItemSmall.pascalCase()}}UserLinkById(int {{ItemSmall.camelCase()}}UserLinkId) =>
+      db.{{ItemSmall.camelCase()}}UserLinkDaoDrift.get{{ItemSmall.pascalCase()}}UserById({{ItemSmall.camelCase()}}UserLinkId);
+
+  {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion _createSelected{{ItemSmall.pascalCase()}}UserCompanion(int {{ItemSmall.camelCase()}}Id, int userId) {
+    return {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion(
+      id: Value.absent(),
+      {{ItemSmall.camelCase()}}Id: Value({{ItemSmall.camelCase()}}Id),
+      userId: Value(userId),
+      linkingDate: Value(DateTime.now()),
+    );
+  }
+}

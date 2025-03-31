@@ -1,0 +1,31 @@
+import 'package:dartz/dartz.dart';
+import 'package:fo_fe/core/error/failures.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/entities/tag_user_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:fo_fe/features/organizer/utils/other/item_type/update_link_ids_params.dart';
+
+abstract class {{ItemSmall.pascalCase()}}Repository {
+  // {{ItemSmall.pascalCase()}} CRUD operations
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}Entity>> add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}});
+
+  Future<Either<Failure, OrganizerItems<{{ItemSmall.pascalCase()}}Entity>>> get{{ItemSmall.pascalCase()}}EntitiesFromUser(int userId);
+
+  Future<Either<Failure, OrganizerItems<{{ItemSmall.pascalCase()}}Dto>>> get{{ItemSmall.pascalCase()}}ItemsFromUser(int userId);
+
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}Entity>> update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}});
+
+  Future<Either<Failure, int>> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id);
+
+  Future<Either<Failure, IdSet>> delete{{ItemSmall.pascalCase()}}Items(IdSet {{ItemSmall.camelCase()}}Ids);
+
+  // User operations related to {{ItemSmall.camelCase()}}s
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}UserLinkEntity>> add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkEntity {{ItemSmall.camelCase()}}UserEntity);
+
+  Future<Either<Failure, OrganizerItems<UserEntity>>> getUserItemsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id);
+
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}UserLinkEntity>> update{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkEntity {{ItemSmall.camelCase()}});
+
+  Future<Either<Failure, OrganizerItems<UserEntity>>> update{{ItemSmall.pascalCase()}}UserLinks(ItemLinkIdsParams params);
+}

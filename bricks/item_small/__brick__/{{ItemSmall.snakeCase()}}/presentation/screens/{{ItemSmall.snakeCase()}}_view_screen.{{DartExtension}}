@@ -1,0 +1,56 @@
+import 'package:fo_fe/core/widgets/core_widget_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_bloc/tag_bloc.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/widgets/menu/tag_edit_screen_actions_menu.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_strings.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}ViewScreen extends StatelessWidget {
+  final int {{ItemSmall.camelCase()}}Id;
+
+  const {{ItemSmall.pascalCase()}}ViewScreen({super.key, required this.{{ItemSmall.camelCase()}}Id});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: {{ItemSmall.pascalCase()}}Strings().screenViewTitle,
+      body: _buildStateWidget(),
+      menuOptions: (context, userId) => {{ItemSmall.pascalCase()}}EditScreenActionsMenu.getMenuItems(context),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+
+  _buildStateWidget() {
+    return BlocBuilder<{{ItemSmall.pascalCase()}}Bloc, OrganizerBlocState>(
+      builder: (context, state) {
+        switch (state.status) {
+          case OrganizerBlocStatus.loading:
+            return _buildLoadingState();
+          case OrganizerBlocStatus.loaded:
+            return _build{{ItemSmall.pascalCase()}}View(context, state);
+          case OrganizerBlocStatus.error:
+            return _buildErrorState(state.errorMessage);
+          default:
+            return _noStateAvailable();
+        }
+      },
+    );
+  }
+
+  Widget _buildLoadingState() => const Center(child: CircularProgressIndicator());
+
+  Widget _buildErrorState(String? message) =>
+      Center(child: Text(message ?? "Unknown error occurred"));
+
+  Widget _noStateAvailable() => Center(child: Text({{ItemSmall.pascalCase()}}Strings().noItemsAvailable));
+
+  Widget _build{{ItemSmall.pascalCase()}}View(BuildContext context, OrganizerBlocState state) {
+    final {{ItemSmall.camelCase()}} = (state.displayedItems?.getById({{ItemSmall.camelCase()}}Id) as {{ItemSmall.pascalCase()}}Dto).{{ItemSmall.camelCase()}};
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Subject: ${{ItemSmall.camelCase()}}.subject', style: const TextStyle(fontSize: 18)),
+      ],
+    );
+  }
+}

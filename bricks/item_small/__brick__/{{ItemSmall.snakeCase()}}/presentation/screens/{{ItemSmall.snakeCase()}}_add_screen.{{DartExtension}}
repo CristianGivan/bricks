@@ -1,0 +1,23 @@
+import 'package:fo_fe/core/widgets/core_widget_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/widgets/menu/tag_add_screen_actions_menu.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}AddScreen extends StatelessWidget {
+  final ItemLinkParams itemLinkParams;
+
+  const {{ItemSmall.pascalCase()}}AddScreen(
+    this.itemLinkParams, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: "Add{{ItemSmall.pascalCase()}}",
+      body: (userId) => {{ItemSmall.pascalCase()}}AddForm(userId: userId, itemLinkParams: itemLinkParams),
+      menuOptions: (context, userId) => {{ItemSmall.pascalCase()}}AddScreenActionsMenu.getMenuItems(context, userId),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+}

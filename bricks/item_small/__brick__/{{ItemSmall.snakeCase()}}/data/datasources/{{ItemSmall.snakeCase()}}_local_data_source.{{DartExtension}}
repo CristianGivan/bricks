@@ -1,0 +1,30 @@
+import 'package:drift/drift.dart';
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+
+abstract class {{ItemSmall.pascalCase()}}LocalDataSource {
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion);
+
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> get{{ItemSmall.pascalCase()}}ById(int id);
+
+  Future<List<QueryRow>?> get{{ItemSmall.pascalCase()}}ItemsFromUser(int userId);
+
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}TableDriftCompanion {{ItemSmall.camelCase()}}Companion);
+
+  Future<int?> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Ids);
+
+  Future<List<int>?> delete{{ItemSmall.pascalCase()}}Items(List<int> {{ItemSmall.camelCase()}}Ids);
+
+  // User operations related to {{ItemSmall.camelCase()}}s
+
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> add{{ItemSmall.pascalCase()}}UserLink(
+      {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion {{ItemSmall.camelCase()}}UserLinkCompanion);
+
+  Future<List<UserTableDriftG?>?> getUserItemsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id);
+
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> update{{ItemSmall.pascalCase()}}UserLink(
+      {{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion {{ItemSmall.camelCase()}}UserLinkCompanion);
+
+  Future<void> addUserItemsTo{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userIds);
+
+  Future<void> deleteUserItemsFrom{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id, List<int> userIds);
+}

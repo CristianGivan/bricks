@@ -1,0 +1,90 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_db.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/data/datasources/tag_local_data_source_drift.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/data/repositories/tag_repository_drift.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_crud_use_case/tag_add_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_crud_use_case/tag_get_items_from_user_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_link_use_case/tag_get_links_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_link_use_case/tag_update_links_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_bloc/tag_bloc.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_cubit/tag_cubit.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/presentation/logic/tag_cubit/tag_form_cubit.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/domain/usecases/export_items_to_excel_use_case.dart';
+import 'package:get_it/get_it.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.snakeCase()}}_bloc/{{ItemSmall.snakeCase()}}_bloc.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.snakeCase()}}_cubit/{{ItemSmall.snakeCase()}}_form_cubit.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/data/datasources/{{ItemSmall.camelCase()}}_local_data_source_drift.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/data/repositories/{{ItemSmall.camelCase()}}_repository_drift.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.camelCase()}}_crud_use_case/{{ItemSmall.camelCase()}}_add_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.camelCase()}}_crud_use_case/{{ItemSmall.camelCase()}}_get_items_from_user_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.camelCase()}}_link_use_case/{{ItemSmall.camelCase()}}_get_links_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.camelCase()}}_link_use_case/{{ItemSmall.camelCase()}}_update_links_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.camelCase()}}_bloc/{{ItemSmall.camelCase()}}_bloc.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.camelCase()}}_cubit/{{ItemSmall.camelCase()}}_form_cubit.dart';
+
+final sl = GetIt.instance;
+
+void tagInit() {
+  // Tag Data Source
+  sl.registerLazySingleton<TagLocalDataSourceDrift>(
+      () => TagLocalDataSourceDrift(db: sl<OrganizerDriftDB>()));
+
+  // Tag Repository
+  sl.registerLazySingleton<TagRepository>(() => TagRepositoryDrift(
+        localDataSource: sl<TagLocalDataSourceDrift>(),
+      ));
+
+  // Tag Use cases
+  sl.registerLazySingleton(() => TagAddUseCase(sl()));
+  sl.registerLazySingleton(() => TagUpdateUseCase(sl()));
+  sl.registerLazySingleton(() => TagDeleteUseCase(sl()));
+  sl.registerLazySingleton(() => TagGetItemsFromUserUseCase(sl()));
+  sl.registerLazySingleton(() => ExportItemsToExcelUseCase<TagDto>(sl()));
+
+  // Task Link Use Cases
+
+  sl.registerLazySingleton(() => TagGetLinksUseCase<UserEntity>(sl()));
+  sl.registerLazySingleton(() => UpdateTagLinkUseCase<UserEntity>(sl()));
+
+  // Tag BLoCs
+  sl.registerLazySingleton<TagBloc>(() => TagBloc(sl()));
+
+  // Tag Cubit
+  sl.registerLazySingleton(() => TagCubit(
+        getEntitiesFromUserUseCase: sl(),
+      ));
+  sl.registerFactory(() => TagFormCubit());
+}
+
+void {{ItemSmall.camelCase()}}Init() {
+  // {{ItemSmall.pascalCase()}} Data Source
+  sl.registerLazySingleton<{{ItemSmall.pascalCase()}}LocalDataSourceDrift>(
+      () => {{ItemSmall.pascalCase()}}LocalDataSourceDrift(db: sl<OrganizerDriftDB>()));
+
+  // {{ItemSmall.pascalCase()}} Repository
+  sl.registerLazySingleton<{{ItemSmall.pascalCase()}}Repository>(() => {{ItemSmall.pascalCase()}}RepositoryDrift(
+        localDataSource: sl<{{ItemSmall.pascalCase()}}LocalDataSourceDrift>(),
+      ));
+
+  // {{ItemSmall.pascalCase()}} Use cases
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}AddUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}UpdateUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}DeleteUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}GetItemsFromUserUseCase(sl()));
+  sl.registerLazySingleton(() => ExportItemsToExcelUseCase<{{ItemSmall.pascalCase()}}Dto>(sl()));
+
+  // {{ItemSmall.pascalCase()}} Link Use Cases
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}GetLinksUseCase<UserEntity>(sl()));
+  sl.registerLazySingleton(() => Update{{ItemSmall.pascalCase()}}LinkUseCase<UserEntity>(sl()));
+
+  // {{ItemSmall.pascalCase()}} BLoCs
+  sl.registerLazySingleton<{{ItemSmall.pascalCase()}}Bloc>(() => {{ItemSmall.pascalCase()}}Bloc(sl()));
+
+  // {{ItemSmall.pascalCase()}} Cubit
+  sl.registerLazySingleton(() => {{ItemSmall.pascalCase()}}Cubit(
+        getEntitiesFromUserUseCase: sl(),
+      ));
+  sl.registerFactory(() => {{ItemSmall.pascalCase()}}FormCubit());
+}
+

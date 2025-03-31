@@ -1,0 +1,36 @@
+import 'dart:async';
+
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.snakeCase()}}_crud_use_case/{{ItemSmall.snakeCase()}}_add_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_crud_use_case/tag_get_items_from_user_use_case.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_params.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:get_it/get_it.dart';
+
+part 'tag_bloc_event.dart';
+part 'tag_bloc_state.dart';
+
+class {{ItemSmall.pascalCase()}}Bloc extends OrganizerBloc<{{ItemSmall.pascalCase()}}Dto> {
+  final {{ItemSmall.pascalCase()}}UpdateUseCase update{{ItemSmall.pascalCase()}}UseCase;
+
+  {{ItemSmall.pascalCase()}}Bloc(
+    this.update{{ItemSmall.pascalCase()}}UseCase,
+  ) : super(
+          addItem: GetIt.instance.get<{{ItemSmall.pascalCase()}}AddUseCase>().call,
+          getItems: GetIt.instance.get<{{ItemSmall.pascalCase()}}GetItemsFromUserUseCase>().call,
+          deleteItems: GetIt.instance.get<{{ItemSmall.pascalCase()}}DeleteUseCase>().call,
+        ) {
+    setupEventHandlers();
+    on<Update{{ItemSmall.pascalCase()}}BlocEvent<{{ItemSmall.pascalCase()}}Params>>(_onUpdate{{ItemSmall.pascalCase()}});
+  }
+
+  Future<void> _onUpdate{{ItemSmall.pascalCase()}}(
+      Update{{ItemSmall.pascalCase()}}BlocEvent<{{ItemSmall.pascalCase()}}Params> event, Emitter<OrganizerBlocState<{{ItemSmall.pascalCase()}}Dto>> emit) async {
+    await handleEvent(
+      emit: emit,
+      action: () => update{{ItemSmall.pascalCase()}}UseCase(event.params),
+      originalItems: (updated{{ItemSmall.pascalCase()}}) => state.originalItems.copyWithUpdatedItem(updated{{ItemSmall.pascalCase()}}),
+      displayedItems: (updated{{ItemSmall.pascalCase()}}) => state.displayedItems.copyWithUpdatedItem(updated{{ItemSmall.pascalCase()}}),
+    );
+  }
+}

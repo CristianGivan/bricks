@@ -1,0 +1,56 @@
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+import 'package:fo_fe/core/error/failures.dart';
+import 'package:fo_fe/core/usecase/usecase.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/domain/entities/tag_user_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_params.dart';
+import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+
+class {{ItemSmall.pascalCase()}}UpdateUseCase extends UseCase<{{ItemSmall.pascalCase()}}Dto, {{ItemSmall.pascalCase()}}Params> {
+  final {{ItemSmall.pascalCase()}}Repository repository;
+
+  {{ItemSmall.pascalCase()}}UpdateUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, {{ItemSmall.pascalCase()}}Dto>> call({{ItemSmall.pascalCase()}}Params params) async {
+    if (params.{{ItemSmall.camelCase()}}Dto.{{ItemSmall.camelCase()}}.isEmpty) {
+      return Left({{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} is empty"));
+    }
+
+    final updateResults = await _performUpdates(params);
+
+    return _processUpdateResults(updateResults, params.{{ItemSmall.camelCase()}}Dto);
+  }
+
+  Future<List<Either<Failure, Equatable>>> _performUpdates({{ItemSmall.pascalCase()}}Params params) {
+    return Future.wait([
+      if (!params.{{ItemSmall.camelCase()}}Entity.isEmpty) repository.update{{ItemSmall.pascalCase()}}(params.{{ItemSmall.camelCase()}}Entity),
+      if (!params.{{ItemSmall.camelCase()}}UserLinkEntity.isEmpty) repository.update{{ItemSmall.pascalCase()}}UserLink(params.{{ItemSmall.camelCase()}}UserLinkEntity),
+    ]);
+  }
+
+  Either<Failure, {{ItemSmall.pascalCase()}}Dto> _processUpdateResults(
+      List<Either<Failure, Equatable>> updateResults, {{ItemSmall.pascalCase()}}Dto {{ItemSmall.camelCase()}}Dto) {
+    {{ItemSmall.pascalCase()}}Dto updated{{ItemSmall.pascalCase()}}Dto = {{ItemSmall.camelCase()}}Dto;
+    List<Failure> failures = [];
+
+    for (final updateResult in updateResults) {
+      updateResult.fold(
+        (failure) => failures.add(failure),
+        (updatedEntity) {
+          if (updatedEntity is {{ItemSmall.pascalCase()}}Entity) {
+            updated{{ItemSmall.pascalCase()}}Dto = updated{{ItemSmall.pascalCase()}}Dto.copyWith({{ItemSmall.camelCase()}}: updatedEntity);
+          } else if (updatedEntity is {{ItemSmall.pascalCase()}}UserLinkEntity) {
+            updated{{ItemSmall.pascalCase()}}Dto = updated{{ItemSmall.pascalCase()}}Dto.copyWith({{ItemSmall.camelCase()}}UserLink: updatedEntity);
+          }
+        },
+      );
+    }
+
+    if (failures.isNotEmpty) {
+      return Left(CombinedFailure(failures));
+    }
+
+    return Right(updated{{ItemSmall.pascalCase()}}Dto);
+  }
+}

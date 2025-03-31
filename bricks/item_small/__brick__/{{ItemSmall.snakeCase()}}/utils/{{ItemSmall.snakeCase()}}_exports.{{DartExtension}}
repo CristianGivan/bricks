@@ -1,0 +1,10 @@
+export '../data/datasources/{{ItemSmall.camelCase()}}_local_data_source.dart';
+export '../data/models/{{ItemSmall.camelCase()}}_mapper.dart';
+export '../domain/entities/{{ItemSmall.camelCase()}}_dto.dart';
+export '../domain/entities/{{ItemSmall.camelCase()}}_entity.dart';
+export '../domain/repositories/{{ItemSmall.camelCase()}}_repository.dart';
+export '../domain/usecases/{{ItemSmall.camelCase()}}_usecase_export_use_case.dart';
+export '../presentation/pages/{{ItemSmall.camelCase()}}_add_form.dart';
+export 'config/{{ItemSmall.camelCase()}}_init.dart';
+export 'config/{{ItemSmall.camelCase()}}_route_names.dart';
+export 'config/{{ItemSmall.camelCase()}}_routes.dart';

@@ -1,0 +1,26 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/domain/entities/{{ItemSmall.camelCase()}}_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/user/domain/entities/user_entity.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:fo_fe/features/organizer/utils/other/item_type/items_link_params/{{ItemSmall.camelCase()}}_user_link_params.dart';
+
+typedef Create{{ItemSmall.pascalCase()}}LinkParams = ItemLinkParams Function(int id, int forUserId);
+
+class {{ItemSmall.pascalCase()}}LinkParamsFactory {
+  static ItemLinkParams create<T extends ItemEntity>({required int id, required int forUserId}) {
+    final create{{ItemSmall.pascalCase()}}LinkParams = typeToParams[T];
+
+    if (create{{ItemSmall.pascalCase()}}LinkParams == null) {
+      throw UnsupportedError('Unsupported type: $T');
+    } else {
+      return create{{ItemSmall.pascalCase()}}LinkParams(id, forUserId);
+    }
+  }
+
+  static final Map<Type, Create{{ItemSmall.pascalCase()}}LinkParams> typeToParams = {
+    UserEntity: createUserLinkParams,
+  };
+
+  static {{ItemSmall.pascalCase()}}UserLinkParams createUserLinkParams(int id, int forUserId) {
+    return {{ItemSmall.pascalCase()}}UserLinkParams(id: id, forUserId: forUserId);
+  }
+}

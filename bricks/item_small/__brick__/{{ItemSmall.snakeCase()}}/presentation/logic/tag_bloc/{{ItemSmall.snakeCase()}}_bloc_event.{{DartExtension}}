@@ -1,0 +1,41 @@
+part of '{{ItemSmall.snakeCase()}}_bloc.dart';
+
+class Update{{ItemSmall.pascalCase()}}BlocEvent<P> extends OrganizerBlocEvent {
+  final P params;
+
+  const Update{{ItemSmall.pascalCase()}}BlocEvent(this.params);
+
+  @override
+  List<Object> get props => [params as Object];
+}
+
+class {{ItemSmall.pascalCase()}}ItemsSortBlocEvent<P> extends OrganizerBlocEvent {
+  final P sortParams;
+
+  const {{ItemSmall.pascalCase()}}ItemsSortBlocEvent({
+    required this.sortParams,
+  });
+
+  @override
+  List<Object> get props => [sortParams as Object];
+}
+
+class {{ItemSmall.pascalCase()}}ItemsFilterBlocEvent<P> extends OrganizerBlocEvent {
+  final P filterParams;
+
+  const {{ItemSmall.pascalCase()}}ItemsFilterBlocEvent({
+    required this.filterParams,
+  });
+
+  @override
+  List<Object> get props => [filterParams as Object];
+}
+
+class Export{{ItemSmall.pascalCase()}}ToExcelBlocEvent extends OrganizerBlocEvent {
+  final {{ItemSmall.pascalCase()}}Params params;
+
+  const Export{{ItemSmall.pascalCase()}}ToExcelBlocEvent(this.params);
+
+  @override
+  List<Object> get props => [params];
+}
