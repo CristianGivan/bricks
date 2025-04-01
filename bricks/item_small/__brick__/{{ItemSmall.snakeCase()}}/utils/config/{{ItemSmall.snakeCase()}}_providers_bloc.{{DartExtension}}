@@ -1,7 +1,6 @@
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.snakeCase()}}_bloc/{{ItemSmall.snakeCase()}}_bloc.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/presentation/logic/{{ItemSmall.snakeCase()}}_cubit/{{ItemSmall.snakeCase()}}_form_cubit.dart';
-import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
-import 'package:get_it/get_it.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 
 List<BlocProvider> get{{ItemSmall.pascalCase()}}BlocProviders() {
   return [

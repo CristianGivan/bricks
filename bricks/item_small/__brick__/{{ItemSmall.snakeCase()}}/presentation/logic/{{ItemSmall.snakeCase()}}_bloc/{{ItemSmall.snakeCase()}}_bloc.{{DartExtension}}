@@ -1,14 +1,10 @@
-import 'dart:async';
-
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/usecases/{{ItemSmall.snakeCase()}}_crud_use_case/{{ItemSmall.snakeCase()}}_add_use_case.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/domain/usecases/tag_crud_use_case/tag_get_items_from_user_use_case.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_params.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
-import 'package:get_it/get_it.dart';
 
-part 'tag_bloc_event.dart';
-part 'tag_bloc_state.dart';
+part '{{ItemSmall.snakeCase()}}_bloc_event.dart';
+part '{{ItemSmall.snakeCase()}}_bloc_state.dart';
 
 class {{ItemSmall.pascalCase()}}Bloc extends OrganizerBloc<{{ItemSmall.pascalCase()}}Dto> {
   final {{ItemSmall.pascalCase()}}UpdateUseCase update{{ItemSmall.pascalCase()}}UseCase;
@@ -21,11 +17,11 @@ class {{ItemSmall.pascalCase()}}Bloc extends OrganizerBloc<{{ItemSmall.pascalCas
           deleteItems: GetIt.instance.get<{{ItemSmall.pascalCase()}}DeleteUseCase>().call,
         ) {
     setupEventHandlers();
-    on<Update{{ItemSmall.pascalCase()}}BlocEvent<{{ItemSmall.pascalCase()}}Params>>(_onUpdate{{ItemSmall.pascalCase()}});
+    on<{{ItemSmall.pascalCase()}}UpdateBlocEvent<{{ItemSmall.pascalCase()}}Params>>(_onUpdate{{ItemSmall.pascalCase()}});
   }
 
   Future<void> _onUpdate{{ItemSmall.pascalCase()}}(
-      Update{{ItemSmall.pascalCase()}}BlocEvent<{{ItemSmall.pascalCase()}}Params> event, Emitter<OrganizerBlocState<{{ItemSmall.pascalCase()}}Dto>> emit) async {
+      {{ItemSmall.pascalCase()}}UpdateBlocEvent<{{ItemSmall.pascalCase()}}Params> event, Emitter<OrganizerBlocState<{{ItemSmall.pascalCase()}}Dto>> emit) async {
     await handleEvent(
       emit: emit,
       action: () => update{{ItemSmall.pascalCase()}}UseCase(event.params),

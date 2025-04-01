@@ -1,12 +1,8 @@
-import 'package:fo_fe/core/widgets/core_widget_exports.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/presentation/screens/{{ItemSmall.camelCase()}}_add_screen.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/presentation/screens/{{ItemSmall.camelCase()}}_update_screen.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/utils/{{ItemSmall.camelCase()}}_exports.dart';
-import 'package:fo_fe/features/organizer/presentation/screens/item_delete_screen.dart';
-import 'package:fo_fe/features/organizer/presentation/screens/item_export_screen.dart';
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
-import '../../presentation/screens/{{ItemSmall.camelCase()}}_view_screen.dart';
 
 class {{ItemSmall.pascalCase()}}Routes {
   static GoRoute routes() {

@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
 
 class {{ItemSmall.pascalCase()}}FormCubit extends Cubit<{{ItemSmall.pascalCase()}}FormState> {
   {{ItemSmall.pascalCase()}}FormCubit() : super({{ItemSmall.pascalCase()}}FormState());

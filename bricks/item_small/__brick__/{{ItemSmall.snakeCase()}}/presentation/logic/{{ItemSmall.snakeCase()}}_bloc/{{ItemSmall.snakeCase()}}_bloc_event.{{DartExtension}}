@@ -1,9 +1,9 @@
 part of '{{ItemSmall.snakeCase()}}_bloc.dart';
 
-class Update{{ItemSmall.pascalCase()}}BlocEvent<P> extends OrganizerBlocEvent {
+class {{ItemSmall.pascalCase()}}UpdateBlocEvent<P> extends OrganizerBlocEvent {
   final P params;
 
-  const Update{{ItemSmall.pascalCase()}}BlocEvent(this.params);
+  const {{ItemSmall.pascalCase()}}UpdateBlocEvent(this.params);
 
   @override
   List<Object> get props => [params as Object];
@@ -31,10 +31,10 @@ class {{ItemSmall.pascalCase()}}ItemsFilterBlocEvent<P> extends OrganizerBlocEve
   List<Object> get props => [filterParams as Object];
 }
 
-class Export{{ItemSmall.pascalCase()}}ToExcelBlocEvent extends OrganizerBlocEvent {
+class {{ItemSmall.pascalCase()}}ExportToExcelBlocEvent extends OrganizerBlocEvent {
   final {{ItemSmall.pascalCase()}}Params params;
 
-  const Export{{ItemSmall.pascalCase()}}ToExcelBlocEvent(this.params);
+  const {{ItemSmall.pascalCase()}}ExportToExcelBlocEvent(this.params);
 
   @override
   List<Object> get props => [params];

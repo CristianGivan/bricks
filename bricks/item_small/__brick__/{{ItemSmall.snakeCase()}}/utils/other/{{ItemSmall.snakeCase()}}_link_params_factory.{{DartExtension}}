@@ -1,7 +1,5 @@
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.camelCase()}}/domain/entities/{{ItemSmall.camelCase()}}_entity.dart';
-import 'package:fo_fe/features/organizer/all_items/user/domain/entities/user_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
-import 'package:fo_fe/features/organizer/utils/other/item_type/items_link_params/{{ItemSmall.camelCase()}}_user_link_params.dart';
 
 typedef Create{{ItemSmall.pascalCase()}}LinkParams = ItemLinkParams Function(int id, int forUserId);
 

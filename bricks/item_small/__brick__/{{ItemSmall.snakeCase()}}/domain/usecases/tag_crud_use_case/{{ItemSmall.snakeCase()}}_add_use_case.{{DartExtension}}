@@ -1,11 +1,7 @@
-import 'package:dartz/dartz.dart';
-import 'package:fo_fe/core/error/failures.dart';
-import 'package:fo_fe/core/usecase/usecase.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/domain/entities/tag_user_entity.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
-import 'package:fo_fe/features/organizer/utils/other/item_type/item_add_params.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/repositories/{{ItemSmall.snakeCase()}}_repository.dart';
 
 class TagAddUseCase extends UseCase<TagDto, AddItemParams> {
   final TagRepository repository;

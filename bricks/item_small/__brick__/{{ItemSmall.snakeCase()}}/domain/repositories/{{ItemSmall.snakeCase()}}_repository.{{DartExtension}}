@@ -1,10 +1,8 @@
-import 'package:dartz/dartz.dart';
-import 'package:fo_fe/core/error/failures.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/domain/entities/tag_user_entity.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
-import 'package:fo_fe/features/organizer/utils/other/item_type/update_link_ids_params.dart';
 
 abstract class {{ItemSmall.pascalCase()}}Repository {
   // {{ItemSmall.pascalCase()}} CRUD operations

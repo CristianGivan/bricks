@@ -1,4 +1,3 @@
-import 'package:drift/drift.dart';
 import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
 
 abstract class {{ItemSmall.pascalCase()}}LocalDataSource {

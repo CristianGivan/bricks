@@ -1,8 +1,5 @@
-import 'package:fo_fe/core/error/failures_map_to_message.dart';
+import 'package:fo_fe/core/core_exports.dart';
 import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/entities/{{ItemSmall.snakeCase()}}_entity.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/other/tag_params.dart';
-import 'package:fo_fe/features/organizer/domain/usecases/get_entities_from_user_use_case.dart';
-import 'package:fo_fe/features/organizer/presentation/cubit/organizer_cubit.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
 class {{ItemSmall.pascalCase()}}Cubit extends OrganizerCubit<{{ItemSmall.pascalCase()}}Entity> {

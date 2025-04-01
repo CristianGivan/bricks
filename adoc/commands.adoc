@@ -3,6 +3,8 @@
 
 mason init
 mason get
+mason remove item_small
+mason add item_small
 mason list
 
 == Special Commands

@@ -1,7 +1,6 @@
-import 'package:excel/excel.dart';
-import 'package:fo_fe/features/organizer/utils/exports/excel/excel_table_factory.dart';
-
-import '../{{ItemSmall.camelCase()}}_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
 class {{ItemSmall.pascalCase()}}ExcelTableFactory extends ExcelTableFactory<{{ItemSmall.pascalCase()}}Dto> {
   @override

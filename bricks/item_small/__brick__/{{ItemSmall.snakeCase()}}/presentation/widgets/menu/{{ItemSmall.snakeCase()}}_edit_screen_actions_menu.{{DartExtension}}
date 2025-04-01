@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
 
 class {{ItemSmall.pascalCase()}}EditScreenActionsMenu {
   static List<PopupMenuEntry> getMenuItems(BuildContext context) {

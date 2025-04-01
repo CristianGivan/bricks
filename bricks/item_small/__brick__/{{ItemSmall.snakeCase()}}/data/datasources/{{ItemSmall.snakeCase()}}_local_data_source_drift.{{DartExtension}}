@@ -1,6 +1,5 @@
-import 'package:drift/drift.dart';
 import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
-import 'package:fo_fe/features/organizer/all_items/tag/utils/tag_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 
 class {{ItemSmall.pascalCase()}}LocalDataSourceDrift implements {{ItemSmall.pascalCase()}}LocalDataSource {
   final OrganizerDriftDB db;
