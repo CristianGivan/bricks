@@ -1,0 +1,49 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+
+part '{{ItemSmall.snakeCase()}}_dao_drift.g.dart';
+
+@DriftAccessor(tables: [{{ItemSmall.pascalCase()}}TableDrift])
+class {{ItemSmall.pascalCase()}}DaoDrift extends DatabaseAccessor<OrganizerDriftDB> with _${{ItemSmall.pascalCase()}}DaoDriftMixin {
+  final OrganizerDriftDB db;
+
+  {{ItemSmall.pascalCase()}}DaoDrift(this.db) : super(db);
+
+  Future<{{ItemSmall.pascalCase()}}TableDriftG?> get{{ItemSmall.pascalCase()}}ById(int id) =>
+      (select({{ItemSmall.camelCase()}}TableDrift)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
+
+  Future<List<{{ItemSmall.pascalCase()}}TableDriftG?>?> get{{ItemSmall.pascalCase()}}ItemsByIdSet(Set<int> ids) =>
+      (select({{ItemSmall.camelCase()}}TableDrift)..where((tbl) => tbl.id.isIn(ids))).get();
+
+  Future<int> add{{ItemSmall.pascalCase()}}(Insertable<{{ItemSmall.pascalCase()}}TableDriftG> {{ItemSmall.camelCase()}}) =>
+      into({{ItemSmall.camelCase()}}TableDrift).insert({{ItemSmall.camelCase()}});
+
+  Future<bool> update{{ItemSmall.pascalCase()}}(Insertable<{{ItemSmall.pascalCase()}}TableDriftG> {{ItemSmall.camelCase()}}) =>
+      update({{ItemSmall.camelCase()}}TableDrift).replace({{ItemSmall.camelCase()}});
+
+  Future<int> delete{{ItemSmall.pascalCase()}}(int id) =>
+      (delete({{ItemSmall.camelCase()}}TableDrift)..where((tbl) => tbl.id.equals(id))).go();
+
+  Future<void> delete{{ItemSmall.pascalCase()}}sByIds(List<int> {{ItemSmall.camelCase()}}Ids) async {
+    if ({{ItemSmall.camelCase()}}Ids.isEmpty) return;
+    await batch((batch) {
+      batch.deleteWhere(
+        {{ItemSmall.camelCase()}}TableDrift,
+        (tbl) => tbl.id.isIn({{ItemSmall.camelCase()}}Ids),
+      );
+    });
+  }
+
+  Future<List<QueryRow>?> get{{ItemSmall.pascalCase()}}ItemsFromUser(int userId) async {
+    final query = customSelect(
+      'SELECT {{ItemSmall.snakeCase()}}_table_drift.*, {{ItemSmall.snakeCase()}}_user_link_table_drift.* '
+      'FROM {{ItemSmall.snakeCase()}}_table_drift '
+      'LEFT OUTER JOIN {{ItemSmall.snakeCase()}}_user_link_table_drift '
+      'ON {{ItemSmall.snakeCase()}}_user_link_table_drift.{{ItemSmall.camelCase()}}_id = {{ItemSmall.snakeCase()}}_table_drift.id '
+      'WHERE {{ItemSmall.snakeCase()}}_user_link_table_drift.user_id = ?',
+      variables: [Variable.withInt(userId)],
+    );
+
+    final result = await query.get();
+    return result;
+  }
+}

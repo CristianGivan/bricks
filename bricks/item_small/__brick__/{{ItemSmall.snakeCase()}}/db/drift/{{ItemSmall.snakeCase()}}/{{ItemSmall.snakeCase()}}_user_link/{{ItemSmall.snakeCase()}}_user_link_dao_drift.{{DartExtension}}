@@ -1,0 +1,60 @@
+import 'package:fo_fe/core/db/drift/organizer/{{ItemSmall.snakeCase()}}/{{ItemSmall.snakeCase()}}_user_link/{{ItemSmall.snakeCase()}}_user_link_table_drift.dart';
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+
+part '{{ItemSmall.snakeCase()}}_user_link_dao_drift.g.dart';
+
+@DriftAccessor(tables: [{{ItemSmall.pascalCase()}}UserLinkTableDrift])
+class {{ItemSmall.pascalCase()}}UserLinkDaoDrift extends DatabaseAccessor<OrganizerDriftDB>
+    with _${{ItemSmall.pascalCase()}}UserLinkDaoDriftMixin {
+  final OrganizerDriftDB db;
+
+  {{ItemSmall.pascalCase()}}UserLinkDaoDrift(this.db) : super(db);
+
+  Future<int> add{{ItemSmall.pascalCase()}}User(Insertable<{{ItemSmall.pascalCase()}}UserLinkTableDriftG> {{ItemSmall.camelCase()}}User) =>
+      into({{ItemSmall.camelCase()}}UserLinkTableDrift).insert({{ItemSmall.camelCase()}}User);
+
+  Future<void> add{{ItemSmall.pascalCase()}}UsersBatch(List<{{ItemSmall.pascalCase()}}UserLinkTableDriftCompanion> companions) async {
+    if (companions.isEmpty) return;
+
+    await batch((batch) {
+      batch.insertAll({{ItemSmall.camelCase()}}UserLinkTableDrift, companions);
+    });
+  }
+
+  Future<Set<int>> getUserIdsBy{{ItemSmall.pascalCase()}}Id(int {{ItemSmall.camelCase()}}Id) async {
+    final userIds = await (select({{ItemSmall.camelCase()}}UserLinkTableDrift)..where((tbl) => tbl.{{ItemSmall.camelCase()}}Id.equals({{ItemSmall.camelCase()}}Id)))
+        .map((tbl) => tbl.userId)
+        .get();
+    return userIds.toSet();
+  }
+
+  Future<{{ItemSmall.pascalCase()}}UserLinkTableDriftG?> get{{ItemSmall.pascalCase()}}UserById(int id) =>
+      (select({{ItemSmall.camelCase()}}UserLinkTableDrift)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
+
+  Future<bool> update{{ItemSmall.pascalCase()}}UserLink(Insertable<{{ItemSmall.pascalCase()}}UserLinkTableDriftG> {{ItemSmall.camelCase()}}User) =>
+      update({{ItemSmall.camelCase()}}UserLinkTableDrift).replace({{ItemSmall.camelCase()}}User);
+
+  Future<void> delete{{ItemSmall.pascalCase()}}UsersBy{{ItemSmall.pascalCase()}}Ids(List<int> {{ItemSmall.camelCase()}}Ids) async {
+    if ({{ItemSmall.camelCase()}}Ids.isEmpty) return;
+
+    await batch((batch) {
+      batch.deleteWhere(
+        {{ItemSmall.camelCase()}}UserLinkTableDrift,
+        (tbl) => tbl.{{ItemSmall.camelCase()}}Id.isIn({{ItemSmall.camelCase()}}Ids),
+      );
+    });
+  }
+
+  Future<void> delete{{ItemSmall.pascalCase()}}UsersBatch(int {{ItemSmall.camelCase()}}Id, List<int> userIds) async {
+    if (userIds.isEmpty) return;
+
+    await batch((batch) {
+      for (final userId in userIds) {
+        batch.deleteWhere(
+          {{ItemSmall.camelCase()}}UserLinkTableDrift,
+          (tbl) => tbl.{{ItemSmall.camelCase()}}Id.equals({{ItemSmall.camelCase()}}Id) & tbl.userId.equals(userId),
+        );
+      }
+    });
+  }
+}
