@@ -12,7 +12,7 @@ class {{ItemSmall.pascalCase()}}UpdateUseCase extends UseCase<{{ItemSmall.pascal
   @override
   Future<Either<Failure, {{ItemSmall.pascalCase()}}Dto>> call({{ItemSmall.pascalCase()}}Params params) async {
     if (params.{{ItemSmall.camelCase()}}Dto.{{ItemSmall.camelCase()}}.isEmpty) {
-      return Left({{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} is empty"));
+      return Left({{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}} is empty"));
     }
 
     final updateResults = await _performUpdates(params);

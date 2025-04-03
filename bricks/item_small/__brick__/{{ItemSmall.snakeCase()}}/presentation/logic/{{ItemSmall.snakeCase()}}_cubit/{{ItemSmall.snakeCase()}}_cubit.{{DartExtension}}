@@ -1,5 +1,4 @@
-import 'package:fo_fe/core/core_exports.dart';
-import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/domain/entities/{{ItemSmall.snakeCase()}}_entity.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
 class {{ItemSmall.pascalCase()}}Cubit extends OrganizerCubit<{{ItemSmall.pascalCase()}}Entity> {

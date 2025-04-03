@@ -16,7 +16,7 @@ class {{ItemSmall.pascalCase()}}RepositoryDrift implements {{ItemSmall.pascalCas
     return dbHelper.execute(
       () => localDataSource.add{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Mapper.tableDriftCompanionFromEntity({{ItemSmall.camelCase()}})),
       {{ItemSmall.pascalCase()}}Mapper.entityFromTableDrift,
-      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not added"),
+      const {{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}} not added"),
     );
   }
 
@@ -39,14 +39,14 @@ class {{ItemSmall.pascalCase()}}RepositoryDrift implements {{ItemSmall.pascalCas
     return dbHelper.execute(
       () => localDataSource.update{{ItemSmall.pascalCase()}}({{ItemSmall.pascalCase()}}Mapper.tableDriftCompanionFromEntity({{ItemSmall.camelCase()}})),
       {{ItemSmall.pascalCase()}}Mapper.entityFromTableDrift,
-      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not updated"),
+      const {{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}} not updated"),
     );
   }
 
   @override
   Future<Either<Failure, int>> delete{{ItemSmall.pascalCase()}}(int {{ItemSmall.camelCase()}}Id) {
     return dbHelper.handleDatabaseOperation(() async => dbHelper.ensureNotNull(
-        await localDataSource.delete{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Id), const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}} not deleted")));
+        await localDataSource.delete{{ItemSmall.pascalCase()}}({{ItemSmall.camelCase()}}Id), const {{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}} not deleted")));
   }
 
   @override
@@ -62,7 +62,7 @@ class {{ItemSmall.pascalCase()}}RepositoryDrift implements {{ItemSmall.pascalCas
     return dbHelper.execute(
       () => localDataSource.add{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkMapper.companionFomEntity({{ItemSmall.camelCase()}}UserEntity)),
       {{ItemSmall.pascalCase()}}UserLinkMapper.entityFromTableDrift,
-      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}}UserLink not added"),
+      const {{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}}UserLink not added"),
     );
   }
 
@@ -81,7 +81,7 @@ class {{ItemSmall.pascalCase()}}RepositoryDrift implements {{ItemSmall.pascalCas
     return dbHelper.execute(
       () => localDataSource.update{{ItemSmall.pascalCase()}}UserLink({{ItemSmall.pascalCase()}}UserLinkMapper.companionFomEntity({{ItemSmall.camelCase()}}UserEntity)),
       {{ItemSmall.pascalCase()}}UserLinkMapper.entityFromTableDrift,
-      const {{ItemSmall.pascalCase()}}Failure("{{ItemSmall.pascalCase()}}UserLink not updated"),
+      const {{ItemSmall.pascalCase()}}Failures("{{ItemSmall.pascalCase()}}UserLink not updated"),
     );
   }
 

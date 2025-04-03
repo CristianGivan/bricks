@@ -8,24 +8,24 @@ class {{ItemSmall.pascalCase()}}ScreenActionsMenu extends ItemScreenActionMenuPr
     return [
       PopupMenuItem(
         child: Text('Add {{ItemSmall.pascalCase()}}'),
-        onTap: () => context.pushNamed({{ItemSmall.camelCase()}}RouterNames.{{ItemSmall.camelCase()}}AddRouteName),
+        onTap: () => context.pushNamed({{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}AddRouteName),
       ),
       PopupMenuItem(
         child: Text('Delete {{ItemSmall.pascalCase()}}'),
-        onTap: () => context.pushNamed({{ItemSmall.camelCase()}}RouterNames.{{ItemSmall.camelCase()}}DeleteRouteName),
+        onTap: () => context.pushNamed({{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}DeleteRouteName),
       ),
       PopupMenuItem(
         child: Text('Filter Tasks'),
-        onTap: () => showFilterDialog(context),
+        onTap: () => context.pop(),
       ),
       PopupMenuItem(
         child: Text('Sort Tasks'),
-        onTap: () => showSortDialog(context),
+        onTap: () => context.pop(),
       ),
       PopupMenuItem(
         child: Text('Export {{ItemSmall.pascalCase()}}s'),
         onTap: () => {
-          context.pushNamed({{ItemSmall.camelCase()}}RouterNames.{{ItemSmall.camelCase()}}ExportRouteName),
+          context.pushNamed({{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ExportRouteName),
           context.pop(),
         },
       ),

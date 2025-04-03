@@ -6,38 +6,6 @@ import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
 final sl = GetIt.instance;
 
-void tagInit() {
-  // Tag Data Source
-  sl.registerLazySingleton<TagLocalDataSourceDrift>(
-      () => TagLocalDataSourceDrift(db: sl<OrganizerDriftDB>()));
-
-  // Tag Repository
-  sl.registerLazySingleton<TagRepository>(() => TagRepositoryDrift(
-        localDataSource: sl<TagLocalDataSourceDrift>(),
-      ));
-
-  // Tag Use cases
-  sl.registerLazySingleton(() => TagAddUseCase(sl()));
-  sl.registerLazySingleton(() => TagUpdateUseCase(sl()));
-  sl.registerLazySingleton(() => TagDeleteUseCase(sl()));
-  sl.registerLazySingleton(() => TagGetItemsFromUserUseCase(sl()));
-  sl.registerLazySingleton(() => ExportItemsToExcelUseCase<TagDto>(sl()));
-
-  // Task Link Use Cases
-
-  sl.registerLazySingleton(() => TagGetLinksUseCase<UserEntity>(sl()));
-  sl.registerLazySingleton(() => UpdateTagLinkUseCase<UserEntity>(sl()));
-
-  // Tag BLoCs
-  sl.registerLazySingleton<TagBloc>(() => TagBloc(sl()));
-
-  // Tag Cubit
-  sl.registerLazySingleton(() => TagCubit(
-        getEntitiesFromUserUseCase: sl(),
-      ));
-  sl.registerFactory(() => TagFormCubit());
-}
-
 void {{ItemSmall.camelCase()}}Init() {
   // {{ItemSmall.pascalCase()}} Data Source
   sl.registerLazySingleton<{{ItemSmall.pascalCase()}}LocalDataSourceDrift>(
@@ -68,4 +36,3 @@ void {{ItemSmall.camelCase()}}Init() {
       ));
   sl.registerFactory(() => {{ItemSmall.pascalCase()}}FormCubit());
 }
-
