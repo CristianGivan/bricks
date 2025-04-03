@@ -1,0 +1,4 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+
+@DataClassName('{{ItemDb.pascalCase()}}TableDriftG')
+class {{ItemDb.pascalCase()}}TableDrift extends OrganizerItemTableDrift {}

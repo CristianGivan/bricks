@@ -1,0 +1,50 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}Params extends ItemParams {
+  final {{ItemSmall.pascalCase()}}Entity {{ItemSmall.camelCase()}}Entity;
+  final {{ItemSmall.pascalCase()}}UserLinkEntity {{ItemSmall.camelCase()}}UserLinkEntity;
+  final {{ItemSmall.pascalCase()}}Dto {{ItemSmall.camelCase()}}Dto;
+  final OrganizerItems<{{ItemSmall.pascalCase()}}Dto> {{ItemSmall.camelCase()}}Items;
+
+  {{ItemSmall.pascalCase()}}Params({
+    required super.id,
+    {{ItemSmall.pascalCase()}}Entity? {{ItemSmall.camelCase()}}Entity,
+    {{ItemSmall.pascalCase()}}UserLinkEntity? {{ItemSmall.camelCase()}}UserLinkEntity,
+    {{ItemSmall.pascalCase()}}Dto? {{ItemSmall.camelCase()}}Dto,
+    IdSet? idSet,
+    int? forUserId,
+    OrganizerItems<{{ItemSmall.pascalCase()}}Dto>? {{ItemSmall.camelCase()}}Items,
+  })  : {{ItemSmall.camelCase()}}Entity = {{ItemSmall.camelCase()}}Entity ?? {{ItemSmall.pascalCase()}}Entity.empty(),
+        {{ItemSmall.camelCase()}}UserLinkEntity = {{ItemSmall.camelCase()}}UserLinkEntity ?? {{ItemSmall.pascalCase()}}UserLinkEntity.empty(),
+        {{ItemSmall.camelCase()}}Dto = {{ItemSmall.camelCase()}}Dto ?? {{ItemSmall.pascalCase()}}Dto.empty(),
+        {{ItemSmall.camelCase()}}Items = {{ItemSmall.camelCase()}}Items ?? OrganizerItems.empty(),
+        super(
+          forUserId: forUserId ?? 0,
+          idSet: idSet ?? IdSet.empty(),
+          itemType: ItemsTypeEnum.{{ItemSmall.camelCase()}},
+        );
+
+  {{ItemSmall.pascalCase()}}Params copyWith({
+    {{ItemSmall.pascalCase()}}Entity? {{ItemSmall.camelCase()}}Entity,
+    {{ItemSmall.pascalCase()}}UserLinkEntity? {{ItemSmall.camelCase()}}UserLinkEntity,
+    {{ItemSmall.pascalCase()}}Dto? {{ItemSmall.camelCase()}}Dto,
+    int? id,
+    IdSet? idSet,
+    int? forUserId,
+  }) {
+    return {{ItemSmall.pascalCase()}}Params(
+      {{ItemSmall.camelCase()}}Entity: {{ItemSmall.camelCase()}}Entity ?? this.{{ItemSmall.camelCase()}}Entity,
+      {{ItemSmall.camelCase()}}UserLinkEntity: {{ItemSmall.camelCase()}}UserLinkEntity ?? this.{{ItemSmall.camelCase()}}UserLinkEntity,
+      {{ItemSmall.camelCase()}}Dto: {{ItemSmall.camelCase()}}Dto ?? this.{{ItemSmall.camelCase()}}Dto,
+      id: id ?? this.id,
+      idSet: idSet ?? this.idSet,
+      forUserId: forUserId ?? this.forUserId,
+    );
+  }
+
+  @override
+  List<Object> get props => [{{ItemSmall.camelCase()}}Entity, {{ItemSmall.camelCase()}}UserLinkEntity, {{ItemSmall.camelCase()}}Dto, ...super.props];
+
+  get itemReturnType => super.itemType;
+}

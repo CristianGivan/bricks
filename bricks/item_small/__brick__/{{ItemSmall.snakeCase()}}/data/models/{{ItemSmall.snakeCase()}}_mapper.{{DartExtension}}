@@ -1,5 +1,6 @@
 import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
 import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
 class {{ItemSmall.pascalCase()}}Mapper {
   static {{ItemSmall.pascalCase()}}Entity entityFromTableDrift({{ItemSmall.pascalCase()}}TableDriftG tableDrift) {

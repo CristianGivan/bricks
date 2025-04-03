@@ -1,0 +1,5 @@
+import 'package:fo_fe/core/core_exports.dart';
+
+class {{ItemSmall.pascalCase()}}Failures extends Failure {
+  const {{ItemSmall.pascalCase()}}Failures(String super.message);
+}

@@ -1,0 +1,49 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+
+part '{{ItemDb.snakeCase()}}_dao_drift.g.dart';
+
+@DriftAccessor(tables: [{{ItemDb.pascalCase()}}TableDrift])
+class {{ItemDb.pascalCase()}}DaoDrift extends DatabaseAccessor<OrganizerDriftDB> with _${{ItemDb.pascalCase()}}DaoDriftMixin {
+  final OrganizerDriftDB db;
+
+  {{ItemDb.pascalCase()}}DaoDrift(this.db) : super(db);
+
+  Future<{{ItemDb.pascalCase()}}TableDriftG?> get{{ItemDb.pascalCase()}}ById(int id) =>
+      (select({{ItemDb.camelCase()}}TableDrift)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
+
+  Future<List<{{ItemDb.pascalCase()}}TableDriftG?>?> get{{ItemDb.pascalCase()}}ItemsByIdSet(Set<int> ids) =>
+      (select({{ItemDb.camelCase()}}TableDrift)..where((tbl) => tbl.id.isIn(ids))).get();
+
+  Future<int> add{{ItemDb.pascalCase()}}(Insertable<{{ItemDb.pascalCase()}}TableDriftG> {{ItemDb.camelCase()}}) =>
+      into({{ItemDb.camelCase()}}TableDrift).insert({{ItemDb.camelCase()}});
+
+  Future<bool> update{{ItemDb.pascalCase()}}(Insertable<{{ItemDb.pascalCase()}}TableDriftG> {{ItemDb.camelCase()}}) =>
+      update({{ItemDb.camelCase()}}TableDrift).replace({{ItemDb.camelCase()}});
+
+  Future<int> delete{{ItemDb.pascalCase()}}(int id) =>
+      (delete({{ItemDb.camelCase()}}TableDrift)..where((tbl) => tbl.id.equals(id))).go();
+
+  Future<void> delete{{ItemDb.pascalCase()}}sByIds(List<int> {{ItemDb.camelCase()}}Ids) async {
+    if ({{ItemDb.camelCase()}}Ids.isEmpty) return;
+    await batch((batch) {
+      batch.deleteWhere(
+        {{ItemDb.camelCase()}}TableDrift,
+        (tbl) => tbl.id.isIn({{ItemDb.camelCase()}}Ids),
+      );
+    });
+  }
+
+  Future<List<QueryRow>?> get{{ItemDb.pascalCase()}}ItemsFromUser(int userId) async {
+    final query = customSelect(
+      'SELECT {{ItemDb.snakeCase()}}_table_drift.*, {{ItemDb.snakeCase()}}_user_link_table_drift.* '
+      'FROM {{ItemDb.snakeCase()}}_table_drift '
+      'LEFT OUTER JOIN {{ItemDb.snakeCase()}}_user_link_table_drift '
+      'ON {{ItemDb.snakeCase()}}_user_link_table_drift.{{ItemDb.camelCase()}}_id = {{ItemDb.snakeCase()}}_table_drift.id '
+      'WHERE {{ItemDb.snakeCase()}}_user_link_table_drift.user_id = ?',
+      variables: [Variable.withInt(userId)],
+    );
+
+    final result = await query.get();
+    return result;
+  }
+}

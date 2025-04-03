@@ -1,12 +1,12 @@
 import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
 
-@DataClassName('{{ItemSmall.pascalCase()}}UserLinkTableDriftG')
-class {{ItemSmall.pascalCase()}}UserLinkTableDrift extends Table {
+@DataClassName('{{ItemDb.pascalCase()}}UserLinkTableDriftG')
+class {{ItemDb.pascalCase()}}UserLinkTableDrift extends Table {
   IntColumn get id => integer().autoIncrement()();
 
   DateTimeColumn get linkingDate => dateTime().withDefault(currentDateAndTime)();
 
-  IntColumn get {{ItemSmall.camelCase()}}Id => integer().customConstraint('REFERENCES {{ItemSmall.pascalCase()}}TableDrift(id)')();
+  IntColumn get {{ItemDb.camelCase()}}Id => integer().customConstraint('REFERENCES {{ItemDb.pascalCase()}}TableDrift(id)')();
 
   IntColumn get userId => integer().customConstraint('REFERENCES UserTableDrift(id)')();
 
