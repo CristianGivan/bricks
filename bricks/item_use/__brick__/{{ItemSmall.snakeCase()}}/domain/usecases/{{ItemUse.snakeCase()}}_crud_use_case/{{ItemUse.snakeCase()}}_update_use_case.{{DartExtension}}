@@ -1,0 +1,54 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+
+class {{ItemUse.pascalCase()}}UpdateUseCase extends UseCase<{{ItemUse.pascalCase()}}Dto, {{ItemUse.pascalCase()}}Params> {
+  final {{ItemUse.pascalCase()}}Repository repository;
+
+  {{ItemUse.pascalCase()}}UpdateUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Dto>> call({{ItemUse.pascalCase()}}Params params) async {
+    if (params.{{ItemUse.camelCase()}}Dto.{{ItemUse.camelCase()}}.isEmpty) {
+      return Left({{ItemUse.pascalCase()}}Failures("{{ItemUse.pascalCase()}} is empty"));
+    }
+
+    final updateResults = await _performUpdates(params);
+
+    return _processUpdateResults(updateResults, params.{{ItemUse.camelCase()}}Dto);
+  }
+
+  Future<List<Either<Failure, Equatable>>> _performUpdates({{ItemUse.pascalCase()}}Params params) {
+    return Future.wait([
+      if (!params.{{ItemUse.camelCase()}}Entity.isEmpty) repository.update{{ItemUse.pascalCase()}}(params.{{ItemUse.camelCase()}}Entity),
+      if (!params.{{ItemUse.camelCase()}}UserLinkEntity.isEmpty) repository.update{{ItemUse.pascalCase()}}UserLink(params.{{ItemUse.camelCase()}}UserLinkEntity),
+    ]);
+  }
+
+  Either<Failure, {{ItemUse.pascalCase()}}Dto> _processUpdateResults(
+      List<Either<Failure, Equatable>> updateResults, {{ItemUse.pascalCase()}}Dto {{ItemUse.camelCase()}}Dto) {
+    {{ItemUse.pascalCase()}}Dto updated{{ItemUse.pascalCase()}}Dto = {{ItemUse.camelCase()}}Dto;
+    List<Failure> failures = [];
+
+    for (final updateResult in updateResults) {
+      updateResult.fold(
+        (failure) => failures.add(failure),
+        (updatedEntity) {
+          if (updatedEntity is {{ItemUse.pascalCase()}}Entity) {
+            updated{{ItemUse.pascalCase()}}Dto = updated{{ItemUse.pascalCase()}}Dto.copyWith({{ItemUse.camelCase()}}: updatedEntity);
+          } else if (updatedEntity is {{ItemUse.pascalCase()}}UserLinkEntity) {
+            updated{{ItemUse.pascalCase()}}Dto = updated{{ItemUse.pascalCase()}}Dto.copyWith({{ItemUse.camelCase()}}UserLink: updatedEntity);
+          }
+        },
+      );
+    }
+
+    if (failures.isNotEmpty) {
+      return Left(CombinedFailure(failures));
+    }
+
+    return Right(updated{{ItemUse.pascalCase()}}Dto);
+  }
+}

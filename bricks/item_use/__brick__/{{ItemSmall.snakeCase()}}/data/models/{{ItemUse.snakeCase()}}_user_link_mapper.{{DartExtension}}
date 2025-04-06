@@ -1,0 +1,37 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+
+class {{ItemUse.pascalCase()}}UserLinkMapper {
+  static {{ItemUse.pascalCase()}}UserLinkEntity entityFromTableDrift({{ItemUse.pascalCase()}}UserLinkTableDriftG tableDrift) {
+    return {{ItemUse.pascalCase()}}UserLinkEntity(
+      id: tableDrift.id,
+      linkingDate: tableDrift.linkingDate,
+      {{ItemUse.camelCase()}}Id: tableDrift.{{ItemUse.camelCase()}}Id,
+      userId: tableDrift.userId,
+      selectedByUser: tableDrift.selectedByUser ?? false,
+      orderedByUser: tableDrift.orderedByUser ?? 0,
+    );
+  }
+
+  static {{ItemUse.pascalCase()}}UserLinkTableDriftCompanion companionFomEntity({{ItemUse.pascalCase()}}UserLinkEntity {{ItemUse.camelCase()}}UserLinkEntity) {
+    return {{ItemUse.pascalCase()}}UserLinkTableDriftCompanion(
+      id: {{ItemUse.camelCase()}}UserLinkEntity.id == 0 ? const Value.absent() : Value({{ItemUse.camelCase()}}UserLinkEntity.id),
+      linkingDate: Value({{ItemUse.camelCase()}}UserLinkEntity.linkingDate ?? DateTime.now()),
+      {{ItemUse.camelCase()}}Id: Value({{ItemUse.camelCase()}}UserLinkEntity.{{ItemUse.camelCase()}}Id ?? 0),
+      userId: Value({{ItemUse.camelCase()}}UserLinkEntity.userId ?? 0),
+      selectedByUser: Value({{ItemUse.camelCase()}}UserLinkEntity.isSelectedByUser ?? false),
+      orderedByUser: Value({{ItemUse.camelCase()}}UserLinkEntity.orderedByUser ?? 0),
+    );
+  }
+
+  static {{ItemUse.pascalCase()}}UserLinkEntity {{ItemUse.camelCase()}}UserEntityFromRow(QueryRow row) {
+    return {{ItemUse.pascalCase()}}UserLinkEntity(
+      id: row.read<int>('id'),
+      linkingDate: row.read<DateTime>('linking_date'),
+      {{ItemUse.camelCase()}}Id: row.read<int>('{{ItemUse.snakeCase()}}_id'),
+      userId: row.read<int>('user_id'),
+      selectedByUser: row.read<bool>('selected_by_user'),
+      orderedByUser: row.read<int>('ordered_by_user'),
+    );
+  }
+}

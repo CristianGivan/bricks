@@ -1,0 +1,69 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}Mapper {
+  static {{ItemUse.pascalCase()}}Entity entityFromTableDrift({{ItemUse.pascalCase()}}TableDriftG tableDrift) {
+    return {{ItemUse.pascalCase()}}Entity(
+      id: tableDrift.id,
+      subject: tableDrift.subject,
+      createdDate: tableDrift.createdDate,
+      creatorId: tableDrift.creatorId,
+      remoteId: tableDrift.remoteId,
+      lastUpdate: tableDrift.lastUpdate,
+      lastViewedDate: tableDrift.lastViewedDate,
+      remoteViews: tableDrift.remoteViews,
+      views: tableDrift.views,
+      checksum: tableDrift.checksum,
+    );
+  }
+
+  static OrganizerItems<{{ItemUse.pascalCase()}}Entity> entityItemsFromTableDriftItems(List<{{ItemUse.pascalCase()}}TableDriftG> items) {
+    return OrganizerItems.of(items.map(entityFromTableDrift).toList());
+  }
+
+  static {{ItemUse.pascalCase()}}TableDriftCompanion tableDriftCompanionFromEntity({{ItemUse.pascalCase()}}Entity entity) {
+    return {{ItemUse.pascalCase()}}TableDriftCompanion(
+      id: entity.id == 0 ? const Value.absent() : Value(entity.id),
+      subject: Value(entity.subject),
+      createdDate: Value(entity.createdDate),
+      creatorId: Value(entity.creatorId),
+      remoteId: Value(entity.remoteId),
+      lastUpdate: Value(entity.lastUpdate),
+      lastViewedDate: Value(entity.lastViewedDate),
+      remoteViews: Value(entity.remoteViews),
+      views: Value(entity.views),
+      checksum: Value(entity.checksum),
+    );
+  }
+
+  static OrganizerItems<{{ItemUse.pascalCase()}}Dto> itemsFromRows(List<QueryRow> rows) {
+    final items = rows.map((row) {
+      return {{ItemUse.pascalCase()}}Dto(
+        {{ItemUse.camelCase()}}: {{ItemUse.camelCase()}}EntityFromRow(row),
+        {{ItemUse.camelCase()}}UserLink: {{ItemUse.pascalCase()}}UserLinkMapper.{{ItemUse.camelCase()}}UserEntityFromRow(row),
+      );
+    }).toList();
+    return OrganizerItems.of(items);
+  }
+
+  static OrganizerItems<{{ItemUse.pascalCase()}}Entity> entitiesFromRows(List<QueryRow> rows) {
+    final items = rows.map({{ItemUse.camelCase()}}EntityFromRow).toList();
+    return OrganizerItems.of(items);
+  }
+
+  static {{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}}EntityFromRow(QueryRow row) {
+    return {{ItemUse.pascalCase()}}Entity(
+      id: row.read<int>('{{ItemUse.snakeCase()}}_id'),
+      subject: row.read<String>('subject'),
+      createdDate: row.read<DateTime>('created_date'),
+      creatorId: row.read<int>('creator_id'),
+      remoteId: row.read<int>('remote_id'),
+      lastUpdate: row.read<DateTime>('last_update'),
+      lastViewedDate: row.read<DateTime>('last_viewed_date'),
+      remoteViews: row.read<int>('remote_views'),
+      views: row.read<int>('views'),
+      checksum: row.read<String>('checksum'),
+    );
+  }
+}

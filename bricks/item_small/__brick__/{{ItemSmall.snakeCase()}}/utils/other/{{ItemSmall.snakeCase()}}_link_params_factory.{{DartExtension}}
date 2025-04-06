@@ -5,21 +5,15 @@ import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 typedef Create{{ItemSmall.pascalCase()}}LinkParams = ItemLinkParams Function(int id, int forUserId);
 
 class {{ItemSmall.pascalCase()}}LinkParamsFactory {
-  static ItemLinkParams create<T extends ItemEntity>({required int id, required int forUserId}) {
-    final create{{ItemSmall.pascalCase()}}LinkParams = typeToParams[T];
-
-    if (create{{ItemSmall.pascalCase()}}LinkParams == null) {
-      throw UnsupportedError('Unsupported type: $T');
-    } else {
-      return create{{ItemSmall.pascalCase()}}LinkParams(id, forUserId);
-    }
-  }
-
-  static final Map<Type, Create{{ItemSmall.pascalCase()}}LinkParams> typeToParams = {
-    UserEntity: createUserLinkParams,
+  static final Map<Type, Create{{ItemSmall.pascalCase()}}LinkParams> _typeToParams = {
+    UserEntity: (id, userId) => {{ItemSmall.pascalCase()}}UserLinkParams(id: id, forUserId: userId),
   };
 
-  static {{ItemSmall.pascalCase()}}UserLinkParams createUserLinkParams(int id, int forUserId) {
-    return {{ItemSmall.pascalCase()}}UserLinkParams(id: id, forUserId: forUserId);
+  static ItemLinkParams create<T extends ItemEntity>({required int id, required int forUserId}) {
+    final create{{ItemSmall.pascalCase()}}LinkParams = _typeToParams[T];
+    if (create{{ItemSmall.pascalCase()}}LinkParams == null) {
+      throw Exception('The type $T is not supported in {{ItemSmall.pascalCase()}}LinkParamsFactory');
+    }
+    return create{{ItemSmall.pascalCase()}}LinkParams(id, forUserId);
   }
 }

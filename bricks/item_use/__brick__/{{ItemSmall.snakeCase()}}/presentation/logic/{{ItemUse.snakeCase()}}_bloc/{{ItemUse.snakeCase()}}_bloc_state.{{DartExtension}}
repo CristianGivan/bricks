@@ -1,0 +1,16 @@
+part of '{{ItemUse.snakeCase()}}_bloc.dart';
+
+class {{ItemUse.pascalCase()}}BlocState extends OrganizerBlocState<{{ItemUse.pascalCase()}}Entity> {
+  final String? errorMessage;
+
+  {{ItemUse.pascalCase()}}BlocState({
+    required super.status,
+    this.errorMessage,
+  });
+
+  @override
+  List<Object?> get props => [
+        status,
+        errorMessage,
+      ];
+}

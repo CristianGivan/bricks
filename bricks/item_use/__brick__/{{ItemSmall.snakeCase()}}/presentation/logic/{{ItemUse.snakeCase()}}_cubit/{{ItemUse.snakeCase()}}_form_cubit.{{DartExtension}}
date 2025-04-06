@@ -1,0 +1,25 @@
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+
+class {{ItemUse.pascalCase()}}FormCubit extends Cubit<{{ItemUse.pascalCase()}}FormState> {
+  {{ItemUse.pascalCase()}}FormCubit() : super({{ItemUse.pascalCase()}}FormState());
+
+  void updateSubject(String subject) {
+    emit(state.copyWith(subject: subject));
+  }
+}
+
+class {{ItemUse.pascalCase()}}FormState extends Equatable {
+  final String subject;
+
+  const {{ItemUse.pascalCase()}}FormState({this.subject = ''});
+
+  {{ItemUse.pascalCase()}}FormState copyWith({String? subject}) {
+    return {{ItemUse.pascalCase()}}FormState(
+      subject: subject ?? this.subject,
+    );
+  }
+
+  @override
+  List<Object> get props => [subject];
+}

@@ -1,0 +1,24 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemSmall.pascalCase()}}UserScreenActionsMenu<T extends ItemEntity> implements MenuItemGenerator<T> {
+  @override
+  List<PopupMenuEntry> getMenuItems(BuildContext context, UpdateLinkParams<T> params) {
+    return [
+      PopupMenuItem(
+        child: Text('Add New {{ItemSmall.pascalCase()}}'),
+        onTap: () =>
+            context.pushNamed(params.pushCreateLinkItemRoute, extra: params.itemLinkParams),
+      ),
+      PopupMenuItem(
+        child: Text('Update with {{ItemSmall.pascalCase()}}s'),
+        onTap: () => {
+          context
+              .read<OrganizerLinkBloc<T>>()
+              .add(UpdateItemsOfItemBlocEvent<T>(params.itemLinkIdsParams)),
+          context.pop()
+        },
+      ),
+    ];
+  }
+}

@@ -1,0 +1,49 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}UpdateScreen extends StatelessWidget {
+  final int {{ItemUse.camelCase()}}Id;
+
+  const {{ItemUse.pascalCase()}}UpdateScreen({super.key, required this.{{ItemUse.camelCase()}}Id});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: {{ItemUse.pascalCase()}}Strings().screenEditTitle,
+      body: (userId) => _buildEditPage(userId),
+      menuOptions: (context, userId) => {{ItemUse.pascalCase()}}EditScreenActionsMenu.getMenuItems(context),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+
+  Widget _buildEditPage(int userId) {
+    return Column(
+      children: [
+        _build{{ItemUse.pascalCase()}}IdField(),
+        _buildUserEntityBlocProvider(userId),
+      ],
+    );
+  }
+
+  Widget _build{{ItemUse.pascalCase()}}IdField() {
+    return TextField(
+      decoration: const InputDecoration(labelText: '{{ItemUse.pascalCase()}} ID: '),
+      controller: TextEditingController(text: {{ItemUse.camelCase()}}Id.toString()),
+    );
+  }
+
+  Widget _buildUserEntityBlocProvider(int userId) {
+    return BlocProvider(
+      create: (context) => {{ItemUse.pascalCase()}}LinksBlocFactory.createFor<UserEntity>(),
+      child: _buildLinkEntityBlocProvider<UserEntity>(userId),
+    );
+  }
+
+  Widget _buildLinkEntityBlocProvider<T extends ItemEntity>(int userId) {
+    final params = {{ItemUse.pascalCase()}}LinkParamsFactory.create<T>(id: {{ItemUse.camelCase()}}Id, forUserId: userId);
+    return ItemLinkEntitiesViewPage<T>(params: params);
+  }
+}

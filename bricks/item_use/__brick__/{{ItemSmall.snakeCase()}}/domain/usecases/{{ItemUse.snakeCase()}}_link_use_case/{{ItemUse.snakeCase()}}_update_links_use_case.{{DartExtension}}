@@ -1,0 +1,33 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+typedef {{ItemUse.pascalCase()}}UpdateLink<T extends ItemEntity> = Future<Either<Failure, OrganizerItems<T>>> Function(
+    ItemLinkIdsParams params);
+
+class Update{{ItemUse.pascalCase()}}LinkUseCase<T extends ItemEntity>
+    extends UseCase<OrganizerItems<T>, ItemLinkIdsParams> {
+  final {{ItemUse.pascalCase()}}Repository repository;
+
+  Update{{ItemUse.pascalCase()}}LinkUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, OrganizerItems<T>>> call(ItemLinkIdsParams params) {
+    final update{{ItemUse.pascalCase()}}Link = _typeTo{{ItemUse.pascalCase()}}Link[T];
+
+    if (update{{ItemUse.pascalCase()}}Link == null) {
+      return Future.value(
+          Left(UnImplementedFailure("Update{{ItemUse.pascalCase()}}LinkUseCase: No implementation for type $T")));
+    }
+
+    return update{{ItemUse.pascalCase()}}Link(params).then(
+      (result) => result.map((items) => items as OrganizerItems<T>),
+    );
+  }
+
+  Map<Type, {{ItemUse.pascalCase()}}UpdateLink> get _typeTo{{ItemUse.pascalCase()}}Link => {
+        UserEntity: (params) => repository.update{{ItemUse.pascalCase()}}UserLinks(params),
+      };
+}

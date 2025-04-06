@@ -1,0 +1,54 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/core/widgets/core_widget_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}ViewScreen extends StatelessWidget {
+  final int {{ItemUse.camelCase()}}Id;
+
+  const {{ItemUse.pascalCase()}}ViewScreen({super.key, required this.{{ItemUse.camelCase()}}Id});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: {{ItemUse.pascalCase()}}Strings().screenViewTitle,
+      body: _buildStateWidget(),
+      menuOptions: (context, userId) => {{ItemUse.pascalCase()}}EditScreenActionsMenu.getMenuItems(context),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+
+  _buildStateWidget() {
+    return BlocBuilder<{{ItemUse.pascalCase()}}Bloc, OrganizerBlocState>(
+      builder: (context, state) {
+        switch (state.status) {
+          case OrganizerBlocStatus.loading:
+            return _buildLoadingState();
+          case OrganizerBlocStatus.loaded:
+            return _build{{ItemUse.pascalCase()}}View(context, state);
+          case OrganizerBlocStatus.error:
+            return _buildErrorState(state.errorMessage);
+          default:
+            return _noStateAvailable();
+        }
+      },
+    );
+  }
+
+  Widget _buildLoadingState() => const Center(child: CircularProgressIndicator());
+
+  Widget _buildErrorState(String? message) =>
+      Center(child: Text(message ?? "Unknown error occurred"));
+
+  Widget _noStateAvailable() => Center(child: Text({{ItemUse.pascalCase()}}Strings().noItemsAvailable));
+
+  Widget _build{{ItemUse.pascalCase()}}View(BuildContext context, OrganizerBlocState state) {
+    final {{ItemUse.camelCase()}} = (state.displayedItems?.getById({{ItemUse.camelCase()}}Id) as {{ItemUse.pascalCase()}}Dto).{{ItemUse.camelCase()}};
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Subject: ${{ItemUse.camelCase()}}.subject', style: const TextStyle(fontSize: 18)),
+      ],
+    );
+  }
+}

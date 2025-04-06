@@ -3,8 +3,9 @@ import 'package:fo_fe/core/external_presentation_exports.dart';
 import 'package:fo_fe/features/organizer/all_items/{{ItemSmall.snakeCase()}}/utils/{{ItemSmall.snakeCase()}}_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
-class {{ItemSmall.pascalCase()}}DeleteScreenActionsMenu {
-  static List<PopupMenuEntry> getMenuItems(BuildContext context, IdSet selectedIds) {
+class {{ItemSmall.pascalCase()}}DeleteScreenActionsMenu extends DeleteMenuItemProvider  {
+  @override
+  List<PopupMenuEntry> getMenuItems(BuildContext context, IdSet selectedIds) {
     return [
       PopupMenuItem(
         child: Text('Delete {{ItemSmall.pascalCase()}}s'),

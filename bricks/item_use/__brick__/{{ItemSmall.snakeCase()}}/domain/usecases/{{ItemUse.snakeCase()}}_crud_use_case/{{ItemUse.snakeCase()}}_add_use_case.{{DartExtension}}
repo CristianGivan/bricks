@@ -1,0 +1,44 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}AddUseCase extends UseCase<{{ItemUse.pascalCase()}}Dto, AddItemParams> {
+  final {{ItemUse.pascalCase()}}Repository repository;
+
+  {{ItemUse.pascalCase()}}AddUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Dto>> call(AddItemParams params) async {
+    final failureOr{{ItemUse.pascalCase()}} = await repository.add{{ItemUse.pascalCase()}}(params.item as {{ItemUse.pascalCase()}}Entity);
+
+    return failureOr{{ItemUse.pascalCase()}}.fold(
+      Left.new,
+      ({{ItemUse.camelCase()}}) => _add{{ItemUse.pascalCase()}}UserLinkAndReturn{{ItemUse.pascalCase()}}Dto({{ItemUse.camelCase()}}, params.itemLinkParams),
+    );
+  }
+
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Dto>> _add{{ItemUse.pascalCase()}}UserLinkAndReturn{{ItemUse.pascalCase()}}Dto(
+      {{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}}, ItemLinkParams? itemLinkParams) async {
+    final {{ItemUse.camelCase()}}UserLink = {{ItemUse.pascalCase()}}UserLinkEntity(
+      {{ItemUse.camelCase()}}Id: {{ItemUse.camelCase()}}.id,
+      userId: {{ItemUse.camelCase()}}.creatorId,
+      linkingDate: DateTime.now(),
+    );
+
+    final failureOr{{ItemUse.pascalCase()}}UserLink = await repository.add{{ItemUse.pascalCase()}}UserLink({{ItemUse.camelCase()}}UserLink);
+
+    return failureOr{{ItemUse.pascalCase()}}UserLink.fold(
+      (failure) => _handle{{ItemUse.pascalCase()}}UserLinkFailure({{ItemUse.camelCase()}}, failure),
+      ({{ItemUse.camelCase()}}UserLink) => Right({{ItemUse.pascalCase()}}Dto({{ItemUse.camelCase()}}: {{ItemUse.camelCase()}}, {{ItemUse.camelCase()}}UserLink: {{ItemUse.camelCase()}}UserLink)),
+    );
+  }
+
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Dto>> _handle{{ItemUse.pascalCase()}}UserLinkFailure({{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}}, Failure failure) async {
+    final failureOrDelete = await repository.delete{{ItemUse.pascalCase()}}({{ItemUse.camelCase()}}.id);
+    return failureOrDelete.fold(
+      (deleteFailure) => Left(CombinedFailure([failure, deleteFailure])),
+      (_) => Left(failure),
+    );
+  }
+}

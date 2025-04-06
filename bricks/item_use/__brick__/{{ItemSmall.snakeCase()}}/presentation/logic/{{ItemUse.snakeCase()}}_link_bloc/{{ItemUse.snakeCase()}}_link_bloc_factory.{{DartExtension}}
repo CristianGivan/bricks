@@ -1,0 +1,13 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}LinksBlocFactory {
+  static OrganizerLinkBloc<T> createFor<T extends ItemEntity>() {
+    if (T == UserEntity) {
+      return {{ItemUse.pascalCase()}}UserLinksBloc() as OrganizerLinkBloc<T>;
+    } else {
+      throw UnsupportedError('Unsupported type: $T');
+    }
+  }
+}

@@ -1,0 +1,29 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+typedef {{ItemUse.pascalCase()}}GetLink<T extends ItemEntity> = Future<Either<Failure, OrganizerItems<T>>> Function(
+    ItemLinkParams params);
+
+class {{ItemUse.pascalCase()}}GetLinksUseCase<T extends ItemEntity> extends UseCase<OrganizerItems<T>, ItemLinkParams> {
+  final {{ItemUse.pascalCase()}}Repository repository;
+
+  {{ItemUse.pascalCase()}}GetLinksUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, OrganizerItems<T>>> call(ItemLinkParams params) {
+    final get{{ItemUse.pascalCase()}}Link = _typeToGet{{ItemUse.pascalCase()}}LinkMap[T];
+
+    if (get{{ItemUse.pascalCase()}}Link == null) {
+      return Future.value(Left(UnexpectedFailure("No handler found for type $T")));
+    }
+
+    return get{{ItemUse.pascalCase()}}Link(params).then((result) => result.map((items) => items as OrganizerItems<T>));
+  }
+
+  Map<Type, {{ItemUse.pascalCase()}}GetLink<ItemEntity>> get _typeToGet{{ItemUse.pascalCase()}}LinkMap => {
+        UserEntity: (params) => repository.getUserItemsBy{{ItemUse.pascalCase()}}Id(params.itemId),
+      };
+}

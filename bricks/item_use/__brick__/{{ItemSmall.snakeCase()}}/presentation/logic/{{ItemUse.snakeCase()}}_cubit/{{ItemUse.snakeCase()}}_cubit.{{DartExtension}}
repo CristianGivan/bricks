@@ -1,0 +1,30 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}Cubit extends OrganizerCubit<{{ItemUse.pascalCase()}}Entity> {
+  final GetEntitiesFromUserUseCase getEntitiesFromUserUseCase;
+
+  {{ItemUse.pascalCase()}}Cubit({
+    required this.getEntitiesFromUserUseCase,
+  });
+
+  @override
+  Future<void> getAllEntitiesFromUser(int userId) async {
+    emit(OrganizerCubitState.loading());
+
+    // Constructing parameters for the use case
+    {{ItemUse.pascalCase()}}Params {{ItemUse.camelCase()}}Params = {{ItemUse.pascalCase()}}Params(id: 0, forUserId: userId);
+
+    final result = await getEntitiesFromUserUseCase({{ItemUse.camelCase()}}Params);
+    result.fold(
+      (failure) => emit(OrganizerCubitState.error(map{{ItemUse.pascalCase()}}FailureToMessage(failure))),
+      (entities) {
+        if (entities is OrganizerItems<{{ItemUse.pascalCase()}}Entity>) {
+          emit(OrganizerCubitState.loaded(entities));
+        } else {
+          emit(OrganizerCubitState.error("Unexpected type for entities"));
+        }
+      },
+    );
+  }
+}

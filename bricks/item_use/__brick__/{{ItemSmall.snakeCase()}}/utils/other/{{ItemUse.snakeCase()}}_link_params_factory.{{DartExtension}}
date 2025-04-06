@@ -1,0 +1,19 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+typedef Create{{ItemUse.pascalCase()}}LinkParams = ItemLinkParams Function(int id, int forUserId);
+
+class {{ItemUse.pascalCase()}}LinkParamsFactory {
+  static final Map<Type, Create{{ItemUse.pascalCase()}}LinkParams> _typeToParams = {
+    UserEntity: (id, userId) => {{ItemUse.pascalCase()}}UserLinkParams(id: id, forUserId: userId),
+  };
+
+  static ItemLinkParams create<T extends ItemEntity>({required int id, required int forUserId}) {
+    final create{{ItemUse.pascalCase()}}LinkParams = _typeToParams[T];
+    if (create{{ItemUse.pascalCase()}}LinkParams == null) {
+      throw Exception('The type $T is not supported in {{ItemUse.pascalCase()}}LinkParamsFactory');
+    }
+    return create{{ItemUse.pascalCase()}}LinkParams(id, forUserId);
+  }
+}

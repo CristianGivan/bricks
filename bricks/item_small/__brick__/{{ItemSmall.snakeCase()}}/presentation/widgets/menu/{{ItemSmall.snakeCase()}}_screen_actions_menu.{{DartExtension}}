@@ -26,7 +26,6 @@ class {{ItemSmall.pascalCase()}}ScreenActionsMenu extends ItemScreenActionMenuPr
         child: Text('Export {{ItemSmall.pascalCase()}}s'),
         onTap: () => {
           context.pushNamed({{ItemSmall.pascalCase()}}RouterNames.{{ItemSmall.camelCase()}}ExportRouteName),
-          context.pop(),
         },
       ),
     ];

@@ -1,0 +1,38 @@
+import 'package:fo_fe/core/db/drift/organizer_drift_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+final sl = GetIt.instance;
+
+void {{ItemUse.camelCase()}}Init() {
+  // {{ItemUse.pascalCase()}} Data Source
+  sl.registerLazySingleton<{{ItemUse.pascalCase()}}LocalDataSourceDrift>(
+      () => {{ItemUse.pascalCase()}}LocalDataSourceDrift(db: sl<OrganizerDriftDB>()));
+
+  // {{ItemUse.pascalCase()}} Repository
+  sl.registerLazySingleton<{{ItemUse.pascalCase()}}Repository>(() => {{ItemUse.pascalCase()}}RepositoryDrift(
+        localDataSource: sl<{{ItemUse.pascalCase()}}LocalDataSourceDrift>(),
+      ));
+
+  // {{ItemUse.pascalCase()}} Use cases
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}AddUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}UpdateUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}DeleteUseCase(sl()));
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}GetItemsFromUserUseCase(sl()));
+  sl.registerLazySingleton(() => ExportItemsToExcelUseCase<{{ItemUse.pascalCase()}}Dto>(sl()));
+
+  // {{ItemUse.pascalCase()}} Link Use Cases
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}GetLinksUseCase<UserEntity>(sl()));
+  sl.registerLazySingleton(() => Update{{ItemUse.pascalCase()}}LinkUseCase<UserEntity>(sl()));
+
+  // {{ItemUse.pascalCase()}} BLoCs
+  sl.registerLazySingleton<{{ItemUse.pascalCase()}}Bloc>(() => {{ItemUse.pascalCase()}}Bloc(sl()));
+
+  // {{ItemUse.pascalCase()}} Cubit
+  sl.registerLazySingleton(() => {{ItemUse.pascalCase()}}Cubit(
+        getEntitiesFromUserUseCase: sl(),
+      ));
+  sl.registerFactory(() => {{ItemUse.pascalCase()}}FormCubit());
+}

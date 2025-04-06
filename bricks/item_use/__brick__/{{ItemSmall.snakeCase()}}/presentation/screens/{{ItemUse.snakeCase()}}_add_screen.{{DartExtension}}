@@ -1,0 +1,23 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}AddScreen extends StatelessWidget {
+  final ItemLinkParams itemLinkParams;
+
+  const {{ItemUse.pascalCase()}}AddScreen(
+    this.itemLinkParams, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppContentScreen(
+      appBarTitle: "Add{{ItemUse.pascalCase()}}",
+      body: (userId) => {{ItemUse.pascalCase()}}AddForm(userId: userId, itemLinkParams: itemLinkParams),
+      menuOptions: (context, userId) => {{ItemUse.pascalCase()}}AddScreenActionsMenu.getMenuItems(context, userId),
+      onSearchSubmitted: (String query) {},
+    );
+  }
+}

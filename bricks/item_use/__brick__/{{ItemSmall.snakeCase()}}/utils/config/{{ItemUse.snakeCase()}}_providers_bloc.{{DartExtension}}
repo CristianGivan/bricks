@@ -1,0 +1,13 @@
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+List<BlocProvider> get{{ItemUse.pascalCase()}}BlocProviders() {
+  return [
+    BlocProvider<{{ItemUse.pascalCase()}}Bloc>(create: (_) => GetIt.instance<{{ItemUse.pascalCase()}}Bloc>()),
+    BlocProvider<{{ItemUse.pascalCase()}}FormCubit>(create: (_) => GetIt.instance<{{ItemUse.pascalCase()}}FormCubit>()),
+    BlocProvider<OrganizerBloc<{{ItemUse.pascalCase()}}Dto>>(create: (_) => GetIt.instance<{{ItemUse.pascalCase()}}Bloc>()),
+    BlocProvider<OrganizerCubit<{{ItemUse.pascalCase()}}Entity>>(create: (_) => GetIt.instance<{{ItemUse.pascalCase()}}Cubit>()),
+  ];
+}

@@ -1,0 +1,29 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+abstract class {{ItemUse.pascalCase()}}Repository {
+  // {{ItemUse.pascalCase()}} CRUD operations
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Entity>> add{{ItemUse.pascalCase()}}({{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}});
+
+  Future<Either<Failure, OrganizerItems<{{ItemUse.pascalCase()}}Entity>>> get{{ItemUse.pascalCase()}}EntitiesFromUser(int userId);
+
+  Future<Either<Failure, OrganizerItems<{{ItemUse.pascalCase()}}Dto>>> get{{ItemUse.pascalCase()}}ItemsFromUser(int userId);
+
+  Future<Either<Failure, {{ItemUse.pascalCase()}}Entity>> update{{ItemUse.pascalCase()}}({{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}});
+
+  Future<Either<Failure, int>> delete{{ItemUse.pascalCase()}}(int {{ItemUse.camelCase()}}Id);
+
+  Future<Either<Failure, IdSet>> delete{{ItemUse.pascalCase()}}Items(IdSet {{ItemUse.camelCase()}}Ids);
+
+  // User operations related to {{ItemUse.camelCase()}}s
+  Future<Either<Failure, {{ItemUse.pascalCase()}}UserLinkEntity>> add{{ItemUse.pascalCase()}}UserLink({{ItemUse.pascalCase()}}UserLinkEntity {{ItemUse.camelCase()}}UserEntity);
+
+  Future<Either<Failure, OrganizerItems<UserEntity>>> getUserItemsBy{{ItemUse.pascalCase()}}Id(int {{ItemUse.camelCase()}}Id);
+
+  Future<Either<Failure, {{ItemUse.pascalCase()}}UserLinkEntity>> update{{ItemUse.pascalCase()}}UserLink({{ItemUse.pascalCase()}}UserLinkEntity {{ItemUse.camelCase()}});
+
+  Future<Either<Failure, OrganizerItems<UserEntity>>> update{{ItemUse.pascalCase()}}UserLinks(ItemLinkIdsParams params);
+}

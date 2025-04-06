@@ -1,0 +1,16 @@
+class {{ItemUse.pascalCase()}}RouterNames {
+  static const String {{ItemUse.camelCase()}}RoutePath = '{{ItemUse.camelCase()}}';
+  static const String {{ItemUse.camelCase()}}RouteName = {{ItemUse.camelCase()}}RoutePath;
+  static const String {{ItemUse.camelCase()}}AddRoutePath = 'add';
+  static const String {{ItemUse.camelCase()}}AddRouteName = '${{ItemUse.camelCase()}}RouteName/${{ItemUse.camelCase()}}AddRoutePath';
+  static const String {{ItemUse.camelCase()}}UpdateRoutePath = 'update';
+  static const String {{ItemUse.camelCase()}}UpdateRouteName = '${{ItemUse.camelCase()}}RouteName/${{ItemUse.camelCase()}}UpdateRoutePath';
+  static const String {{ItemUse.camelCase()}}ViewRoutePath = 'view';
+  static const String {{ItemUse.camelCase()}}ViewRouteName = '${{ItemUse.camelCase()}}RouteName/${{ItemUse.camelCase()}}ViewRoutePath';
+  static const String {{ItemUse.camelCase()}}DeleteRoutePath = 'delete';
+  static const String {{ItemUse.camelCase()}}DeleteRouteName = '${{ItemUse.camelCase()}}RouteName/${{ItemUse.camelCase()}}DeleteRoutePath';
+  static const String {{ItemUse.camelCase()}}ExportRoutePath = 'export';
+  static const String {{ItemUse.camelCase()}}ExportRouteName = '${{ItemUse.camelCase()}}RouteName/${{ItemUse.camelCase()}}ExportRoutePath';
+  static const String {{ItemUse.camelCase()}}UpdateUserRoutePath = '{{ItemUse.camelCase()}}User';
+  static const String {{ItemUse.camelCase()}}UpdateUserRouteName = '${{ItemUse.camelCase()}}UpdateRouteName/${{ItemUse.camelCase()}}UpdateUserRoutePath';
+}

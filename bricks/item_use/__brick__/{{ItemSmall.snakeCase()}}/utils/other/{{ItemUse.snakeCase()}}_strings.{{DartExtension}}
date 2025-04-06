@@ -1,0 +1,11 @@
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}Strings extends ItemStrings {
+  final String itemName;
+
+  {{ItemUse.pascalCase()}}Strings()
+      : itemName = '{{ItemUse.camelCase()}}',
+        super('{{ItemUse.camelCase()}}');
+
+  String get no{{ItemUse.pascalCase()}}DtoLoaded => 'No {{ItemUse.camelCase()}}Dto loaded';
+}

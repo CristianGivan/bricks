@@ -1,0 +1,68 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+
+class {{ItemUse.pascalCase()}}AddForm extends StatelessWidget {
+  final int userId;
+  final ItemLinkParams itemLinkParams;
+
+  const {{ItemUse.pascalCase()}}AddForm({super.key, required this.userId, required this.itemLinkParams});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<{{ItemUse.pascalCase()}}FormCubit, {{ItemUse.pascalCase()}}FormState>(
+      builder: (context, state) {
+        return Form(
+          child: ListView(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(labelText: '{{ItemUse.pascalCase()}} Name'),
+                initialValue: state.subject,
+                onChanged: (value) => context.read<{{ItemUse.pascalCase()}}FormCubit>().updateSubject(value),
+                validator: validate{{ItemUse.pascalCase()}}Name,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => _save{{ItemUse.pascalCase()}}(context),
+                child: const Text('Save {{ItemUse.pascalCase()}}'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  String? validate{{ItemUse.pascalCase()}}Name(value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please enter a {{ItemUse.pascalCase()}} name';
+    }
+    return null;
+  }
+
+  void _save{{ItemUse.pascalCase()}}(BuildContext context) {
+    final formState = context.read<{{ItemUse.pascalCase()}}FormCubit>().state;
+    final {{ItemUse.camelCase()}} = _create{{ItemUse.pascalCase()}}FromFormState(formState);
+    final addItemParams = _createAddItemParams({{ItemUse.camelCase()}});
+
+    BlocProvider.of<OrganizerBloc<{{ItemUse.pascalCase()}}Dto>>(context).add(AddItemBlocEvent(addItemParams));
+
+    context.read<OrganizerCubit<{{ItemUse.pascalCase()}}Entity>>().getAllEntitiesFromUser(userId);
+    context.pop();
+  }
+
+  AddItemParams _createAddItemParams({{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}}) => AddItemParams(
+        item: {{ItemUse.camelCase()}},
+        itemLinkParams: itemLinkParams,
+      );
+
+  {{ItemUse.pascalCase()}}Entity _create{{ItemUse.pascalCase()}}FromFormState({{ItemUse.pascalCase()}}FormState formState) {
+    return {{ItemUse.pascalCase()}}Entity(
+      id: 0,
+      subject: formState.subject,
+      createdDate: DateTime.now(),
+      creatorId: userId,
+    );
+  }
+}

@@ -1,0 +1,15 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}GetItemsFromUserUseCase extends UseCase<OrganizerItems<{{ItemUse.pascalCase()}}Dto>, ItemParams> {
+  final {{ItemUse.pascalCase()}}Repository repository;
+
+  {{ItemUse.pascalCase()}}GetItemsFromUserUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, OrganizerItems<{{ItemUse.pascalCase()}}Dto>>> call(params) async {
+    return repository.get{{ItemUse.pascalCase()}}ItemsFromUser(params.forUserId);
+  }
+}

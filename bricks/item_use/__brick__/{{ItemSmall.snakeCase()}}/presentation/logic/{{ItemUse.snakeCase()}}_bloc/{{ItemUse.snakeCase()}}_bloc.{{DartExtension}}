@@ -1,0 +1,32 @@
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+part '{{ItemUse.snakeCase()}}_bloc_event.dart';
+part '{{ItemUse.snakeCase()}}_bloc_state.dart';
+
+class {{ItemUse.pascalCase()}}Bloc extends OrganizerBloc<{{ItemUse.pascalCase()}}Dto> {
+  final {{ItemUse.pascalCase()}}UpdateUseCase update{{ItemUse.pascalCase()}}UseCase;
+
+  {{ItemUse.pascalCase()}}Bloc(
+    this.update{{ItemUse.pascalCase()}}UseCase,
+  ) : super(
+          addItem: GetIt.instance.get<{{ItemUse.pascalCase()}}AddUseCase>().call,
+          getItems: GetIt.instance.get<{{ItemUse.pascalCase()}}GetItemsFromUserUseCase>().call,
+          deleteItems: GetIt.instance.get<{{ItemUse.pascalCase()}}DeleteUseCase>().call,
+        ) {
+    setupEventHandlers();
+    on<{{ItemUse.pascalCase()}}UpdateBlocEvent<{{ItemUse.pascalCase()}}Params>>(_onUpdate{{ItemUse.pascalCase()}});
+  }
+
+  Future<void> _onUpdate{{ItemUse.pascalCase()}}(
+      {{ItemUse.pascalCase()}}UpdateBlocEvent<{{ItemUse.pascalCase()}}Params> event, Emitter<OrganizerBlocState<{{ItemUse.pascalCase()}}Dto>> emit) async {
+    await handleEvent(
+      emit: emit,
+      action: () => update{{ItemUse.pascalCase()}}UseCase(event.params),
+      originalItems: (updated{{ItemUse.pascalCase()}}) => state.originalItems.copyWithUpdatedItem(updated{{ItemUse.pascalCase()}}),
+      displayedItems: (updated{{ItemUse.pascalCase()}}) => state.displayedItems.copyWithUpdatedItem(updated{{ItemUse.pascalCase()}}),
+    );
+  }
+}

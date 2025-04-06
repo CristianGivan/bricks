@@ -1,0 +1,17 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}UserLinkUpdater implements ItemUserLinkUpdater<{{ItemUse.pascalCase()}}Dto> {
+  @override
+  void update(BuildContext context, {{ItemUse.pascalCase()}}Dto {{ItemUse.camelCase()}}Dto, bool value) {
+    final updatedLink = {{ItemUse.camelCase()}}Dto.{{ItemUse.camelCase()}}UserLink.copyWith(isSelectedByUser: value);
+    context.read<OrganizerBloc<{{ItemUse.pascalCase()}}Dto>>().add(
+          {{ItemUse.pascalCase()}}UpdateBlocEvent({{ItemUse.pascalCase()}}Params(
+            id: {{ItemUse.camelCase()}}Dto.id,
+            {{ItemUse.camelCase()}}Dto: {{ItemUse.camelCase()}}Dto,
+            {{ItemUse.camelCase()}}UserLinkEntity: updatedLink,
+          )),
+        );
+  }
+}

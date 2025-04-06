@@ -1,0 +1,38 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+
+class {{ItemUse.pascalCase()}}AddScreenActionsMenu {
+  static List<PopupMenuEntry> getMenuItems(BuildContext context, int userId) {
+    return [
+      PopupMenuItem(
+        child: const Text('Save {{ItemUse.pascalCase()}}'),
+        onTap: () => onTap(context, userId),
+      ),
+      PopupMenuItem(
+        child: const Text('Not Save'),
+        onTap: () => context.pop(),
+      ),
+    ];
+  }
+
+  static void onTap(BuildContext context, int userId) {
+    final {{ItemUse.camelCase()}}FormCubit = context.read<{{ItemUse.pascalCase()}}FormCubit>();
+    final {{ItemUse.camelCase()}}FormState = {{ItemUse.camelCase()}}FormCubit.state;
+
+    final {{ItemUse.camelCase()}} = {{ItemUse.pascalCase()}}Entity(
+      id: 0,
+      subject: {{ItemUse.camelCase()}}FormState.subject,
+      createdDate: DateTime.now(),
+      creatorId: userId,
+    );
+
+    final AddItemParams addItemParams = AddItemParams(
+      item: {{ItemUse.camelCase()}},
+    );
+
+    BlocProvider.of<{{ItemUse.pascalCase()}}Bloc>(context).add(AddItemBlocEvent(addItemParams));
+    context.pop();
+  }
+}

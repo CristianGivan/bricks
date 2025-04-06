@@ -1,0 +1,38 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}Dto extends DtoEntity {
+  final {{ItemUse.pascalCase()}}Entity {{ItemUse.camelCase()}};
+  final {{ItemUse.pascalCase()}}UserLinkEntity {{ItemUse.camelCase()}}UserLink;
+
+  {{ItemUse.pascalCase()}}Dto({
+    required this.{{ItemUse.camelCase()}},
+    required this.{{ItemUse.camelCase()}}UserLink,
+  }) : super(entity: {{ItemUse.camelCase()}}, userLink: {{ItemUse.camelCase()}}UserLink);
+
+  {{ItemUse.pascalCase()}}Dto copyWith({
+    {{ItemUse.pascalCase()}}Entity? {{ItemUse.camelCase()}},
+    {{ItemUse.pascalCase()}}UserLinkEntity? {{ItemUse.camelCase()}}UserLink,
+  }) {
+    return {{ItemUse.pascalCase()}}Dto(
+      {{ItemUse.camelCase()}}: {{ItemUse.camelCase()}} ?? this.{{ItemUse.camelCase()}},
+      {{ItemUse.camelCase()}}UserLink: {{ItemUse.camelCase()}}UserLink ?? this.{{ItemUse.camelCase()}}UserLink,
+    );
+  }
+
+  static final {{ItemUse.pascalCase()}}Dto _emptyInstance = {{ItemUse.pascalCase()}}Dto(
+    {{ItemUse.camelCase()}}: {{ItemUse.pascalCase()}}Entity.empty(),
+    {{ItemUse.camelCase()}}UserLink: {{ItemUse.pascalCase()}}UserLinkEntity.empty(),
+  );
+
+  factory {{ItemUse.pascalCase()}}Dto.empty() => _emptyInstance;
+
+  @override
+  get emptyInstance => _emptyInstance;
+
+  @override
+  bool get isEmpty => identical(this, _emptyInstance);
+
+  @override
+  List<Object?> get props => [{{ItemUse.camelCase()}}, {{ItemUse.camelCase()}}UserLink];
+}

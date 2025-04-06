@@ -1,0 +1,12 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+
+class {{ItemUse.pascalCase()}}EditScreenActionsMenu {
+  static List<PopupMenuEntry> getMenuItems(BuildContext context) {
+    return [
+      PopupMenuItem(
+        child: Text('Save {{ItemUse.pascalCase()}}'),
+        onTap: () => context.pop(),
+      )
+    ];
+  }
+}

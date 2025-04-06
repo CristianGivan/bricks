@@ -1,0 +1,57 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+
+class {{ItemUse.pascalCase()}}Routes {
+  static GoRoute routes() {
+    return GoRoute(
+      path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}RoutePath,
+      name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}RouteName,
+      pageBuilder: (context, state) {
+        return MaterialPage(child: ItemScreen<{{ItemUse.pascalCase()}}Dto>());
+      },
+      routes: [
+        GoRoute(
+          path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}AddRoutePath,
+          name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}AddRouteName,
+          pageBuilder: (context, state) {
+            final ItemLinkParams itemLinkParams = state.extra as ItemLinkParams? ?? NoLinkParams();
+            return MaterialPage(child: {{ItemUse.pascalCase()}}AddScreen(itemLinkParams));
+          },
+        ),
+        GoRoute(
+          path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}ViewRoutePath,
+          name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}ViewRouteName,
+          pageBuilder: (context, state) {
+            final {{ItemUse.camelCase()}}Id = state.extra as int;
+            return MaterialPage(child: {{ItemUse.pascalCase()}}ViewScreen({{ItemUse.camelCase()}}Id: {{ItemUse.camelCase()}}Id));
+          },
+        ),
+        GoRoute(
+          path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}UpdateRoutePath,
+          name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}UpdateRouteName,
+          pageBuilder: (context, state) {
+            final {{ItemUse.camelCase()}}Id = state.extra as int;
+            return MaterialPage(child: {{ItemUse.pascalCase()}}UpdateScreen({{ItemUse.camelCase()}}Id: {{ItemUse.camelCase()}}Id));
+          },
+        ),
+        GoRoute(
+          path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}DeleteRoutePath,
+          name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}DeleteRouteName,
+          pageBuilder: (context, state) {
+            return NoTransitionPage(child: ItemDeleteScreen<{{ItemUse.pascalCase()}}Dto>());
+          },
+        ),
+        GoRoute(
+          path: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}ExportRoutePath,
+          name: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}ExportRouteName,
+          pageBuilder: (context, state) {
+            return NoTransitionPage(child: ItemExportScreen<{{ItemUse.pascalCase()}}Dto>());
+          },
+        ),
+      ],
+    );
+  }
+}

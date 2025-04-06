@@ -1,0 +1,16 @@
+import 'package:fo_fe/core/core_exports.dart';
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}DeleteScreenActionsMenu extends DeleteMenuItemProvider  {
+  @override
+  List<PopupMenuEntry> getMenuItems(BuildContext context, IdSet selectedIds) {
+    return [
+      PopupMenuItem(
+        child: Text('Delete {{ItemUse.pascalCase()}}s'),
+        onTap: () => DialogManager.confirmAndDelete<{{ItemUse.pascalCase()}}Dto>(context, selectedIds),
+      )
+    ];
+  }
+}

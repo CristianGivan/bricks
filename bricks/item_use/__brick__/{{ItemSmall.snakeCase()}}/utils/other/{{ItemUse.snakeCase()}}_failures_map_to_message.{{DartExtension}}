@@ -1,0 +1,21 @@
+import 'package:fo_fe/core/core_exports.dart';
+
+String mapOrganizerFailureToMessage(Failure failure) {
+  switch (failure.runtimeType) {
+    case NetworkFailure:
+      return 'Network error occurred';
+    case ServerFailure:
+      return 'Server error occurred';
+    case CacheFailure:
+      return 'Cache error occurred';
+    case LocalFailure:
+      return (failure as LocalFailure).message ?? 'Local error occurred';
+
+    default:
+      return 'Unexpected error occurred';
+  }
+}
+
+String map{{ItemUse.pascalCase()}}FailureToMessage(Failure failure) {
+  return mapOrganizerFailureToMessage(failure);
+}

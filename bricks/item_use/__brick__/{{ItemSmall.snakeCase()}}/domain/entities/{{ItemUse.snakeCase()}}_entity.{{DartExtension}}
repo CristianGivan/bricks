@@ -1,9 +1,9 @@
 import 'package:fo_fe/core/core_exports.dart';
 import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
 
-class {{ItemSmall.pascalCase()}}Entity extends OrganizerItemEntity {
+class {{ItemUse.pascalCase()}}Entity extends OrganizerItemEntity {
 
-  {{ItemSmall.pascalCase()}}Entity({
+  {{ItemUse.pascalCase()}}Entity({
     String? subject,
     int? id,
     int? creatorId,
@@ -27,9 +27,9 @@ class {{ItemSmall.pascalCase()}}Entity extends OrganizerItemEntity {
           checksum: checksum ?? '',
         );
 
-  static final {{ItemSmall.pascalCase()}}Entity _emptyInstance = {{ItemSmall.pascalCase()}}Entity();
+  static final {{ItemUse.pascalCase()}}Entity _emptyInstance = {{ItemUse.pascalCase()}}Entity();
 
-  factory {{ItemSmall.pascalCase()}}Entity.empty() => _emptyInstance;
+  factory {{ItemUse.pascalCase()}}Entity.empty() => _emptyInstance;
 
   @override
   get emptyInstance => _emptyInstance;
@@ -37,7 +37,7 @@ class {{ItemSmall.pascalCase()}}Entity extends OrganizerItemEntity {
   @override
   bool get isEmpty => identical(this, _emptyInstance);
 
-  {{ItemSmall.pascalCase()}}Entity copyWith({
+  {{ItemUse.pascalCase()}}Entity copyWith({
     String? subject,
     int? id,
     int? creatorId,
@@ -49,7 +49,7 @@ class {{ItemSmall.pascalCase()}}Entity extends OrganizerItemEntity {
     int? views,
     String? checksum,
   }) {
-    return {{ItemSmall.pascalCase()}}Entity(
+    return {{ItemUse.pascalCase()}}Entity(
       subject: subject ?? this.subject,
       id: id ?? this.id,
       creatorId: creatorId ?? this.creatorId,

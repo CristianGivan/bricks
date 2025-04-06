@@ -1,0 +1,33 @@
+import 'package:fo_fe/core/external_presentation_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}ScreenActionsMenu extends ItemScreenActionMenuProvider {
+  @override
+  List<PopupMenuEntry> getMenuItems(BuildContext context) {
+    return [
+      PopupMenuItem(
+        child: Text('Add {{ItemUse.pascalCase()}}'),
+        onTap: () => context.pushNamed({{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}AddRouteName),
+      ),
+      PopupMenuItem(
+        child: Text('Delete {{ItemUse.pascalCase()}}'),
+        onTap: () => context.pushNamed({{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}DeleteRouteName),
+      ),
+      PopupMenuItem(
+        child: Text('Filter Tasks'),
+        onTap: () => context.pop(),
+      ),
+      PopupMenuItem(
+        child: Text('Sort Tasks'),
+        onTap: () => context.pop(),
+      ),
+      PopupMenuItem(
+        child: Text('Export {{ItemUse.pascalCase()}}s'),
+        onTap: () => {
+          context.pushNamed({{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}ExportRouteName),
+        },
+      ),
+    ];
+  }
+}

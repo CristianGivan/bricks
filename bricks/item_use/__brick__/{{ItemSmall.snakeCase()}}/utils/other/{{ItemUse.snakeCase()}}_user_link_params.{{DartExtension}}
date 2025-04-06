@@ -1,0 +1,32 @@
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}UserLinkParams extends ItemLinkParams {
+  const {{ItemUse.pascalCase()}}UserLinkParams({
+    required int id,
+    required int forUserId,
+    IdSet? idSet,
+  }) : super(
+          itemId: id,
+          userId: forUserId,
+          itemType: ItemsTypeEnum.{{ItemUse.camelCase()}}User,
+          pushUpdateRoute: {{ItemUse.pascalCase()}}RouterNames.{{ItemUse.camelCase()}}UpdateUserRouteName,
+          pushCreateLinkItemRoute: UserRouterNames.userAddRouteName,
+        );
+
+  @override
+  copyWith({
+    int? itemId,
+    int? userId,
+    ItemsTypeEnum? itemType,
+    OrganizerLinkBloc<ItemEntity>? organizerLinkBloc,
+    String? pushUpdateRoute,
+    String? pushCreateLinkItemRoute,
+  }) {
+    return {{ItemUse.pascalCase()}}UserLinkParams(
+      id: itemId ?? this.itemId,
+      forUserId: userId ?? this.userId,
+    );
+  }
+}

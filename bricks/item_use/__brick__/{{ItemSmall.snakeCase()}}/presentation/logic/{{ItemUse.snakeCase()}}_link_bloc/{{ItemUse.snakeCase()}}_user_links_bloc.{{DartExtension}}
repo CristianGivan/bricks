@@ -1,0 +1,14 @@
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/domain/usecases/{{ItemUse.snakeCase()}}_use_case_export.dart';
+import 'package:fo_fe/features/organizer/all_items/user/utils/user_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}UserLinksBloc extends OrganizerLinkBloc<UserEntity> {
+  {{ItemUse.pascalCase()}}UserLinksBloc()
+      : super(
+          getItemsLinked: GetIt.instance<{{ItemUse.pascalCase()}}GetLinksUseCase<UserEntity>>(),
+          updateItemsLinked: GetIt.instance<Update{{ItemUse.pascalCase()}}LinkUseCase<UserEntity>>(),
+        ) {
+    setupEventHandlers();
+  }
+}

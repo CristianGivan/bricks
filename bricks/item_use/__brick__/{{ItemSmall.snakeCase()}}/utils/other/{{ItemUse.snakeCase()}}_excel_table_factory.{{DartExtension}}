@@ -1,0 +1,25 @@
+import 'package:fo_fe/core/external_exports.dart';
+import 'package:fo_fe/features/organizer/all_items/{{ItemUse.snakeCase()}}/utils/{{ItemUse.snakeCase()}}_exports.dart';
+import 'package:fo_fe/features/organizer/utils/organizer_exports.dart';
+
+class {{ItemUse.pascalCase()}}ExcelTableFactory extends ExcelTableFactory<{{ItemUse.pascalCase()}}Dto> {
+  @override
+  String getTableName() => '{{ItemUse.pascalCase()}}s';
+
+  @override
+  List<CellValue?> createHeader() {
+    return [
+      TextCellValue('{{ItemUse.pascalCase()}} ID'),
+      TextCellValue('{{ItemUse.pascalCase()}} Subject'),
+      TextCellValue('{{ItemUse.pascalCase()}} Description'),
+    ];
+  }
+
+  @override
+  List<CellValue?> createRow({{ItemUse.pascalCase()}}Dto entity) {
+    return [
+      IntCellValue(entity.{{ItemUse.camelCase()}}.id),
+      TextCellValue(entity.{{ItemUse.camelCase()}}.subject),
+    ];
+  }
+}
