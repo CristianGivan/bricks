@@ -1,1 +1,1 @@
-{"bricks":{"item":{"git":{"url":"https://github.com/CristianGivan/bricks.git","path":"bricks/item","ref":"24c40e723cb9ce790780fd8e43d073af40327b0f"}},"item_small":{"git":{"url":"https://github.com/CristianGivan/bricks.git","path":"bricks/item_small","ref":"24c40e723cb9ce790780fd8e43d073af40327b0f"}}}}
+{"bricks":{"item":{"git":{"url":"https://github.com/CristianGivan/bricks.git","path":"bricks/item","ref":"24c40e723cb9ce790780fd8e43d073af40327b0f"}},"item_use":{"path":".\\bricks\\item_use\\"}}}

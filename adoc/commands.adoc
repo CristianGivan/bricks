@@ -5,6 +5,7 @@ mason init
 mason get
 mason remove item_small
 mason add item_small
+mason add item_use --path templates/mason/item_use
 mason list
 
 == Special Commands

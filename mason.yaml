@@ -3,7 +3,5 @@ bricks:
     git:
       url: "https://github.com/CristianGivan/bricks.git"
       path: bricks/item
-  item_small:
-    git:
-      url: "https://github.com/CristianGivan/bricks.git"
-      path: bricks/item_small
+  item_use:
+    path: "bricks\\item_use"
